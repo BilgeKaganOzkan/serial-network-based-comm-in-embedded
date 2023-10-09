@@ -1,0 +1,3 @@
+/home/gktrk/Desktop/denn/projj/build/CMakeFiles/main.dir
+/home/gktrk/Desktop/denn/projj/build/CMakeFiles/edit_cache.dir
+/home/gktrk/Desktop/denn/projj/build/CMakeFiles/rebuild_cache.dir

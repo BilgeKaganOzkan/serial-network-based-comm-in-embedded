@@ -1,0 +1,59 @@
+#pragma once
+#include <iostream>
+
+enum BaudRate
+{
+	BAUDRATE_9600 = 0,
+	BAUDRATE_38400 = 1,
+	BAUDRATE_57600 = 2,
+	BAUDRATE_115200 = 3
+};
+
+enum DataBit
+{
+	DATABIT_5 = 0,
+	DATABIT_6 = 1,
+	DATABIT_7 = 2,
+	DATABIT_8 = 3
+};
+
+enum StopBit
+{
+	STOPBIT_1 = 0,
+	STOPBIT_2 = 1
+};
+
+enum ParityBit
+{
+	PARITYBIT_NONE = 0,
+	PARITYBIT_EVEN = 1,
+	PARITYBIT_ODD = 2
+};
+
+enum SerialFailCodeType
+{
+	SERIAL_OK = 0,
+	NAME_IS_INVALID = 1,
+	BAUDRATE_OUT_OF_RANGE = 2,
+	DATABIT_OUT_OF_RANGE = 3,
+	PARITYBIT_OUT_OF_RANGE = 4,
+	STOPBIT_OUT_OF_RANGE = 5,
+	SERIALPORT_COULD_NOT_OPENED  = 6,
+	NOT_OBTAINED_SERIALPORT_STATUS = 7,
+	PORTNAME_IS_NONE = 8,
+	READING_ERROR = 9,
+	SERIALPORT_COULD_NOT_CLOSED = 10,
+	COMMUNICATION_NOT_STARTED = 11,
+	COMMUNICATION_NOT_CLOSED = 12,
+	COMMUNICATION_ALREADY_STOPPED = 13,
+	COMMUNICATION_ALREADY_STARTED = 14
+};
+
+struct SerialPortConfig
+{
+	std::string portName;
+	BaudRate baudRate;
+	DataBit dataBit;
+	StopBit stopBit;
+	ParityBit parityBit;
+};

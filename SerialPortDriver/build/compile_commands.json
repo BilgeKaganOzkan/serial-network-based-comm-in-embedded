@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/gktrk/Desktop/denn/projj/build",
+  "command": "/usr/bin/g++ -DOPENSSL=1 -I/home/gktrk/Desktop/denn/projj/./lib -g -std=c++11 -o CMakeFiles/main.dir/src/SerialComm.cpp.o -c /home/gktrk/Desktop/denn/projj/src/SerialComm.cpp",
+  "file": "/home/gktrk/Desktop/denn/projj/src/SerialComm.cpp"
+},
+{
+  "directory": "/home/gktrk/Desktop/denn/projj/build",
+  "command": "/usr/bin/g++ -DOPENSSL=1 -I/home/gktrk/Desktop/denn/projj/./lib -g -std=c++11 -o CMakeFiles/main.dir/src/MqttComm.cpp.o -c /home/gktrk/Desktop/denn/projj/src/MqttComm.cpp",
+  "file": "/home/gktrk/Desktop/denn/projj/src/MqttComm.cpp"
+},
+{
+  "directory": "/home/gktrk/Desktop/denn/projj/build",
+  "command": "/usr/bin/g++ -DOPENSSL=1 -I/home/gktrk/Desktop/denn/projj/./lib -g -std=c++11 -o CMakeFiles/main.dir/src/IniParser.cpp.o -c /home/gktrk/Desktop/denn/projj/src/IniParser.cpp",
+  "file": "/home/gktrk/Desktop/denn/projj/src/IniParser.cpp"
+},
+{
+  "directory": "/home/gktrk/Desktop/denn/projj/build",
+  "command": "/usr/bin/g++ -DOPENSSL=1 -I/home/gktrk/Desktop/denn/projj/./lib -g -std=c++11 -o CMakeFiles/main.dir/src/Message.cpp.o -c /home/gktrk/Desktop/denn/projj/src/Message.cpp",
+  "file": "/home/gktrk/Desktop/denn/projj/src/Message.cpp"
+},
+{
+  "directory": "/home/gktrk/Desktop/denn/projj/build",
+  "command": "/usr/bin/g++ -DOPENSSL=1 -I/home/gktrk/Desktop/denn/projj/./lib -g -std=c++11 -o CMakeFiles/main.dir/app/main.cpp.o -c /home/gktrk/Desktop/denn/projj/app/main.cpp",
+  "file": "/home/gktrk/Desktop/denn/projj/app/main.cpp"
+}
+]
