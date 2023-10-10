@@ -3,11 +3,21 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 
+/**
+ * @brief This function initialize failCode variable.
+ * @param N/A
+ * @return N/A
+ */
 IniParser::IniParser()
 {
     failCode = INIPARSER_OK;
 }
 
+/**
+ * @brief This function start the reading and parsing processes.
+ * @param N/A
+ * @return N/A
+ */
 void IniParser::startParsing()
 {
     boost::property_tree::ptree pt;
@@ -49,16 +59,31 @@ void IniParser::startParsing()
     }
 }
 
+/**
+ * @brief This function return the Serial Port Config Data.
+ * @param N/A
+ * @return IniParserSerialPortConfig
+ */
 IniParserSerialPortConfig& IniParser::getSerialPortConfigData()
 {
     return serialPortConfig;
 }
 
+/**
+ * @brief This function return the MQTT Client Config Data.
+ * @param N/A
+ * @return IniParserMqttClientConfig
+ */
 IniParserMqttClientConfig& IniParser::getMqttClientConfigData()
 {
     return mqttClientConfig;
 }
 
+/**
+ * @brief This function return the Message Config Data.
+ * @param N/A
+ * @return IniParserMessageConfig
+ */
 IniParserMessageConfig& IniParser::getMessageConfigData()
 {
     return messageConfig;
