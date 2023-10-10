@@ -4,6 +4,11 @@
 #include "IniParserConfig.h"
 #include <vector>
 
+/**
+ * @class Message
+ * @brief Message class collect the data which given to it, check the collected data format and 
+ * prepare the data which will be send to the MQTT server.
+ */
 class Message
 {
 private:
@@ -17,10 +22,39 @@ private:
     int seperatedDataCounter;
     std::string message;
     std::vector<std::string> parsedMessage;
+
+    /**
+     * @brief This function reset counter variables and message variable.
+     * @param N/A.
+     * @return N/A
+     */
     void reset();
 public:
+    /**
+     * @brief This function create message format according to iniParserMessageConfig to check be collecting data.
+     * @param iniParserMessageConfig: This is message configuration referance whose type is IniParserMessageConfig.
+     * @return N/A
+     */
     void createMessageFormat(IniParserMessageConfig& iniParserMessageConfig);
+
+    /**
+     * @brief This function collect the data and check it.
+     * @param data: This is to be collected data.
+     * @return N/A
+     */
     bool acquireData(char& data);
+
+    /**
+     * @brief This function prepare the data which will be send to the MQTT server.
+     * @param N/A
+     * @return N/A
+     */
     void prepareData();
+
+    /**
+     * @brief This function return the prepared the data which will be send to the MQTT server.
+     * @param N/A
+     * @return std::vector<std::string>&: Prepared data vector referance.
+     */
     std::vector<std::string>& getParsedMessage();
 };
