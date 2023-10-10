@@ -40,7 +40,8 @@ public:
     /**
      * @brief This function collect the data and check it.
      * @param data: This is to be collected data.
-     * @return N/A
+     * @return TRUE: If the data to be prepared to be ready.
+     * @return FALSE: If the data to be prepared to be not ready.
      */
     bool acquireData(char& data);
 
