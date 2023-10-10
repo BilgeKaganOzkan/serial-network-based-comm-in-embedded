@@ -1,3 +1,11 @@
+/** \addtogroup IniParser
+ * @{
+ * @author Bilge Kağan ÖZKAN
+ * @file IniParser.h
+ * @defgroup IniParser
+ * @brief This module has IniParser class.
+ */
+
 #pragma once
 #include "IniParserConfig.h"
 #include "FailCode.h"
@@ -30,6 +38,7 @@ private:
      * @brief This variable keep Message Config Data.
      */
     IniParserMessageConfig messageConfig;
+    
 public:
     /**
      * @brief This function initialize all variables.
@@ -66,3 +75,5 @@ public:
      */
     IniParserMessageConfig& getMessageConfigData();
 };
+
+/**@}*/

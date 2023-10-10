@@ -1,3 +1,8 @@
+/**
+ * @file MqttComm.cpp
+ * @author Bilge Kağan ÖZKAN
+ */
+
 #include <iostream>
 #include <mqtt/client.h>
 #include "MqttComm.h"
@@ -15,6 +20,7 @@ MqttComm::MqttComm()
 {
     isConnected = false;
     failCode = MQTT_OK;
+    mqttClient = nullptr;
 }
 
 /**
@@ -24,7 +30,7 @@ MqttComm::MqttComm()
  */
 MqttComm::~MqttComm()
 {
-    delete client;
+    delete mqttClient;
 }
 
 /**
@@ -70,14 +76,22 @@ void MqttComm::ConnectServer(IniParserMqttClientConfig& mqttConfigData)
 {
     convertIniParserDataToMqttConfig(mqttConfigData);
 
-    client = new mqtt::client(mqttConfig.serverAdress, mqttConfigData.id, mqtt::create_options(MQTTVERSION_5));
+    if (mqttClient != nullptr)
+    {
+        mqttClient->disconnect();
+        delete mqttClient;
+    }
 
-    client->connect();
+    mqttClient = new mqtt::client(mqttConfig.serverAdress, mqttConfigData.id);
 
-    if (client->is_connected() == false)
+    mqttClient->connect();
+
+    if (mqttClient->is_connected() == false)
     {
         FAILCODE_SET_AND_EXIT<MqttFailCodeType>(failCode, MQTT_CONNECTION_ERROR);
     }
+
+    std::cout << "MQTT Client connect to the MQTT Server successfully." << std::endl;
 
     isConnected = true;
 }
@@ -119,8 +133,10 @@ void MqttComm::publishMessage(Message& message)
     mqtt::const_message_ptr messagePointer3{mqtt::make_message(mqttConfig.topic3, parsedMessage[2], qos, false)};
     mqtt::const_message_ptr messagePointer4{mqtt::make_message(mqttConfig.topic4, parsedMessage[3], qos, false)};
 
-    client->publish(messagePointer1);
-    client->publish(messagePointer2);
-    client->publish(messagePointer3);
-    client->publish(messagePointer4);
+    mqttClient->publish(messagePointer1);
+    mqttClient->publish(messagePointer2);
+    mqttClient->publish(messagePointer3);
+    mqttClient->publish(messagePointer4);
+
+    std::cout << "Prepared data was sent successfully." << std::endl << std::endl;
 }

@@ -1,3 +1,8 @@
+/**
+ * @file Message.cpp
+ * @author Bilge Kağan ÖZKAN
+ */
+
 #include "Message.h"
 #include "IniParserConfig.h"
 #include <vector>

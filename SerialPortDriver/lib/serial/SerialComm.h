@@ -1,3 +1,11 @@
+/** \addtogroup SerialComm
+ * @{
+ * @author Bilge Kağan ÖZKAN
+ * @file SerialComm.h
+ * @defgroup SerialComm
+ * @brief This module has SerialComm class.
+ */
+
 #pragma once
 #include <iostream>
 #include <boost/asio.hpp>
@@ -13,24 +21,24 @@
 class SerialComm
 {
 private:
-	boost::asio::serial_port *serial;
+	boost::asio::serial_port* serialPort;
 	bool isStarted;
 	FailCode<SerialFailCodeType> failCode;
 	SerialPortConfig serialPortConfig;
 
 	/**
-         * @brief This function convert IniParserMqttClientConfig Structure type to SerialPortConfig Structure type.
-         * @param[in] configData: IniParser Serial Port Configuration Structure.
-         * @return N/A
-         */
-	void convertIniParserDataToSerialConfig(IniParserSerialPortConfig& configData);
+	 * @brief This function convert IniParserMqttClientConfig Structure type to SerialPortConfig Structure type.
+	 * @param[in] iniParserSerialPortConfigData: IniParser Serial Port Configuration Structure.
+	 * @return N/A
+	 */
+	void convertIniParserDataToSerialConfig(IniParserSerialPortConfig& iniParserSerialPortConfigData);
 
 	/**
-         * @brief This function configure the serial port.
-         * @param[in] serial: boost::asio::serial_port object pointer.
-         * @return N/A
-         */
-	void assignSerialParams(boost::asio::serial_port* serial);
+	 * @brief This function configure the serial port.
+	 * @param N/A
+	 * @return N/A
+	 */
+	void assignSerialParams();
 
 public:
 	/**
@@ -49,11 +57,11 @@ public:
 
 	/**
 	 * @brief This function start the serial communication.
-	 * @param[in] configData: IniParserSerialPortConfig Structure referance.
+	 * @param[in] iniParserSerialPortConfigData: IniParserSerialPortConfig Structure referance.
  	 * @param[in] mqtt: MqttComm object referance. 
 	 * @return N/A
 	 */
-	void startCommunication(IniParserSerialPortConfig& configData, MqttComm& mqtt);
+	void startCommunication(IniParserSerialPortConfig& iniParserSerialPortConfigData, MqttComm& mqtt);
 
 	/**
 	 * @brief This function stop the serial communication.
@@ -69,3 +77,5 @@ public:
 	 */
 	void readDataFromSerial(Message& message);
 };
+
+/**@}*/

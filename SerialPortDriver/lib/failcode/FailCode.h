@@ -1,3 +1,11 @@
+/** \addtogroup FailCode
+ * @{
+ * @author Bilge Kağan ÖZKAN
+ * @file FailCode.h
+ * @defgroup FailCode
+ * @brief This module has FailCode class, FAILCODE_SET_AND_EXIT and FAILCODE_CHECK_AND_EXIT functions.
+ */
+
 #pragma once
 
 /**
@@ -10,6 +18,10 @@ class FailCode
 private:
     T failCode;
 public:
+    FailCode()
+    {
+    }
+
     /**
      * @brief This function initialize failCode variable.
      * @param[in] failCode: This is fail code, which has template T type.
@@ -91,3 +103,5 @@ inline void FAILCODE_CHECK_AND_EXIT(FailCode<T>& failCode, T&& controlFailCode)
        throw failCode;
     }
 };
+
+/**@}*/

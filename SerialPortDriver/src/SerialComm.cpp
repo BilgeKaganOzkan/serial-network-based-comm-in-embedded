@@ -1,3 +1,8 @@
+/**
+ * @file SerialComm.cpp 
+ * @author Bilge Kağan ÖZKAN
+ */
+
 #include <iostream>
 #include <string>
 #include "SerialComm.h"
@@ -9,7 +14,6 @@
 #include "vector"
 #include "Message.h"
 #include "SerialComm.h"
-#include "Configuration.h"
 
 /**
  * @brief This function initialize the isStarted variable, failCode and serial pointers.
@@ -20,7 +24,7 @@ SerialComm::SerialComm()
 {
 	isStarted = false;
 	failCode = SERIAL_OK;
-	serial = nullptr;
+	serialPort = nullptr;
 }
 
 /**
@@ -30,26 +34,26 @@ SerialComm::SerialComm()
  */
 SerialComm::~SerialComm()
 {
-	delete serial;
+	delete serialPort;
 }
 
 /**
  * @brief This function convert IniParserMqttClientConfig Structure type to SerialPortConfig Structure type.
- * @param[in] configData: IniParser Serial Port Configuration Structure.
+ * @param[in] iniParserSerialConfigData: IniParser Serial Port Configuration Structure.
  * @return N/A
  */
-void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& configData)
+void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& iniParserSerialPortConfigData)
 {
-	if (configData.portName == "")
+	if (iniParserSerialPortConfigData.portName == "")
 	{
 		FAILCODE_SET_AND_EXIT(failCode, PORTNAME_IS_NONE);
 	}
 	else
 	{
-		serialPortConfig.portName = configData.portName;
+		serialPortConfig.portName = iniParserSerialPortConfigData.portName;
 	}
 
-	switch (configData.baudRate)
+	switch (iniParserSerialPortConfigData.baudRate)
 	{
 	case 9600:
 		serialPortConfig.baudRate = BAUDRATE_9600;
@@ -68,7 +72,7 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& c
 		break;
 	}
 
-	switch (configData.dataBit)
+	switch (iniParserSerialPortConfigData.dataBit)
 	{
 	case 5:
 		serialPortConfig.dataBit = DATABIT_5;
@@ -87,7 +91,7 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& c
 		break;
 	}
 
-	switch (configData.stopBit)
+	switch (iniParserSerialPortConfigData.stopBit)
 	{
 	case 1:
 		serialPortConfig.stopBit = STOPBIT_1;
@@ -100,15 +104,15 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& c
 		break;
 	}
 
-	if (configData.parityBit == "NONE")
+	if (iniParserSerialPortConfigData.parityBit == "NONE")
 	{
 		serialPortConfig.parityBit = PARITYBIT_NONE;
 	}
-	else if (configData.parityBit == "EVEN")
+	else if (iniParserSerialPortConfigData.parityBit == "EVEN")
 	{
 		serialPortConfig.parityBit = PARITYBIT_ODD;
 	}
-	else if (configData.parityBit == "ODD")
+	else if (iniParserSerialPortConfigData.parityBit == "ODD")
 	{
 		serialPortConfig.parityBit = PARITYBIT_EVEN;
 	}
@@ -120,10 +124,10 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& c
 
 /**
  * @brief This function configure the serial port.
- * @param[in] serial: boost::asio::serial_port object pointer.
+ * @param N/A
  * @return N/A
  */
-void SerialComm::assignSerialParams(boost::asio::serial_port* serial)
+void SerialComm::assignSerialParams()
 {
 	int baudRate{0};
 	int dataBit{0};
@@ -193,43 +197,46 @@ void SerialComm::assignSerialParams(boost::asio::serial_port* serial)
 		break;
 	}
 
-    serial->set_option(boost::asio::serial_port_base::character_size(dataBit));
-	serial->set_option(boost::asio::serial_port_base::baud_rate(baudRate));
-    serial->set_option(boost::asio::serial_port_base::parity(parityBit));
-    serial->set_option(boost::asio::serial_port_base::stop_bits(stopBit));
+    serialPort->set_option(boost::asio::serial_port_base::character_size(dataBit));
+	serialPort->set_option(boost::asio::serial_port_base::baud_rate(baudRate));
+    serialPort->set_option(boost::asio::serial_port_base::parity(parityBit));
+    serialPort->set_option(boost::asio::serial_port_base::stop_bits(stopBit));
 }
 
 /**
  * @brief This function start the serial communication.
- * @param[in] configData: IniParserSerialPortConfig Structure referance.
+ * @param[in] iniParserSerialPortConfigData: IniParserSerialPortConfig Structure referance.
  * @param[in] mqtt: MqttComm object referance. 
  * @return N/A
  */
-void SerialComm::startCommunication(IniParserSerialPortConfig& configData, MqttComm& mqtt)
+void SerialComm::startCommunication(IniParserSerialPortConfig& iniParserSerialPortConfigData, MqttComm& mqtt)
 {
 	if (isStarted == true)
 	{
 		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, COMMUNICATION_ALREADY_STARTED);
 	}
 
-	convertIniParserDataToSerialConfig(configData);
+	convertIniParserDataToSerialConfig(iniParserSerialPortConfigData);
 
 	try
 	{
-		if (serial != nullptr)
+		if (serialPort != nullptr)
 		{
-			delete serial;
+			serialPort->close();
+			delete serialPort;
 		}
 
 		boost::asio::io_service ioService;
-		serial = new boost::asio::serial_port{ioService, static_cast<std::string>(serialPortConfig.portName)};
+		serialPort = new boost::asio::serial_port{ioService, static_cast<std::string>(serialPortConfig.portName)};
 
-		if (serial->is_open() == false)
+		if (serialPort->is_open() == false)
 		{
 			FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_COULD_NOT_OPENED);
 		}
 
-		assignSerialParams(serial);
+		std::cout << "Serial communication was started successfully." << std::endl;
+
+		assignSerialParams();
 
 		isStarted = true;
 	}
@@ -252,9 +259,9 @@ void SerialComm::stopCommunication()
 		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, COMMUNICATION_ALREADY_STOPPED);
 	}
 
-	serial->close();
+	serialPort->close();
 
-	if (serial->is_open() == true)
+	if (serialPort->is_open() == true)
 	{
 		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_COULD_NOT_CLOSED);
 	}
@@ -277,8 +284,10 @@ void SerialComm::readDataFromSerial(Message& message)
 
 	while(!isCommunicationContinue)
 	{
-		boost::asio::read(*serial, boost::asio::buffer(&data, 1));
-		std::cout << data;
+		boost::asio::read(*serialPort, boost::asio::buffer(&data, 1));
 		isCommunicationContinue = message.acquireData(data);
+		std::cout << data;
 	}
+
+	std::cout << " data was received" << std::endl;
 }

@@ -1,3 +1,11 @@
+/** \addtogroup MqttComm
+ * @{
+ * @author Bilge Kağan ÖZKAN
+ * @file MqttComm.h
+ * @defgroup MqttComm
+ * @brief This module has SerialComm class.
+ */
+
 #pragma once
 #include <mqtt/client.h>
 #include <iostream>
@@ -15,7 +23,7 @@ class MqttComm
 {
 private:
     bool isConnected;
-    mqtt::client* client;
+    mqtt::client* mqttClient;
     MqttConfig mqttConfig;
     FailCode<MqttFailCodeType> failCode;
 
@@ -25,6 +33,7 @@ private:
      * @return N/A
      */
     void convertIniParserDataToMqttConfig(IniParserMqttClientConfig& mqttConfigData);
+    
 public:
     /**
      * @brief This function initialize the isConnect variable and failCode pointer.
@@ -54,3 +63,5 @@ public:
      */
     void publishMessage(Message& message);
 };
+
+/**@}*/

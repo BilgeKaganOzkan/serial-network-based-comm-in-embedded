@@ -1,3 +1,8 @@
+/**
+ * @file IniParser.cpp 
+ * @author Bilge Kağan ÖZKAN
+ */
+
 #include "IniParser.h"
 #include "IniParserConfig.h"
 #include <boost/property_tree/ptree.hpp>
@@ -24,7 +29,7 @@ void IniParser::startParsing()
     
     try
     {
-        boost::property_tree::ini_parser::read_ini("../config/config.ini", pt);
+        boost::property_tree::ini_parser::read_ini("./config/config.ini", pt);
     }
     catch(const boost::wrapexcept<boost::property_tree::ini_parser::ini_parser_error>& e)
     {

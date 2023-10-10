@@ -1,3 +1,11 @@
+/** \addtogroup Message
+ * @{
+ * @author Bilge Kağan ÖZKAN
+ * @file Message.h
+ * @defgroup Message
+ * @brief This module has Message class.
+ */
+
 #pragma once
 #include "MessageConfig.h"
 #include <iostream>
@@ -29,6 +37,7 @@ private:
      * @return N/A
      */
     void reset();
+    
 public:
     /**
      * @brief This function create message format according to iniParserMessageConfig to check be collecting data.
@@ -59,3 +68,5 @@ public:
      */
     std::vector<std::string>& getParsedMessage();
 };
+
+/**@}*/
