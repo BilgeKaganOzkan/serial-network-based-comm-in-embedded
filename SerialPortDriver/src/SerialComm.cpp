@@ -11,6 +11,11 @@
 #include "SerialComm.h"
 #include "Configuration.h"
 
+/**
+ * @brief This function initialize the isStarted variable, failCode and serial pointers.
+ * @param N/A
+ * @return N/A
+ */
 SerialComm::SerialComm()
 {
 	isStarted = false;
@@ -18,11 +23,21 @@ SerialComm::SerialComm()
 	serial = nullptr;
 }
 
+/**
+ * @brief This function delete the serial pointers.
+ * @param N/A
+ * @return N/A
+ */
 SerialComm::~SerialComm()
 {
 	delete serial;
 }
 
+/**
+ * @brief This function convert IniParserMqttClientConfig Structure type to SerialPortConfig Structure type.
+ * @param[in] configData: IniParser Serial Port Configuration Structure.
+ * @return N/A
+ */
 void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& configData)
 {
 	if (configData.portName == "")
@@ -103,6 +118,11 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& c
 	}
 }
 
+/**
+ * @brief This function configure the serial port.
+ * @param[in] serial: boost::asio::serial_port object pointer.
+ * @return N/A
+ */
 void SerialComm::assignSerialParams(boost::asio::serial_port* serial)
 {
 	int baudRate{0};
@@ -179,6 +199,12 @@ void SerialComm::assignSerialParams(boost::asio::serial_port* serial)
     serial->set_option(boost::asio::serial_port_base::stop_bits(stopBit));
 }
 
+/**
+ * @brief This function start the serial communication.
+ * @param[in] configData: IniParserSerialPortConfig Structure referance.
+ * @param[in] mqtt: MqttComm object referance. 
+ * @return N/A
+ */
 void SerialComm::startCommunication(IniParserSerialPortConfig& configData, MqttComm& mqtt)
 {
 	if (isStarted == true)
@@ -214,6 +240,11 @@ void SerialComm::startCommunication(IniParserSerialPortConfig& configData, MqttC
 	}
 }
 
+/**
+ * @brief This function stop the serial communication.
+ * @param N/A
+ * @return N/A
+ */
 void SerialComm::stopCommunication()
 {
 	if (isStarted == false)
@@ -229,6 +260,11 @@ void SerialComm::stopCommunication()
 	}
 }
 
+/**
+ * @brief This function read data from serial port.
+ * @param[in] message: Message object referance.
+ * @return N/A
+ */
 void SerialComm::readDataFromSerial(Message& message)
 {
 	char data;
