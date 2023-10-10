@@ -17,6 +17,11 @@ static void buttonPressCallback();
 static void changeSystemState();
 static void printMessage(char* led1PinState, char* led2PinState);
 
+/**
+ * @brief This function increase buttonPressCounter when the button was triggered.
+ * @param N/A
+ * @return N/A
+ */
 static void buttonPressCallback() 
 {
   unsigned long runTime = millis();
@@ -35,6 +40,11 @@ static void buttonPressCallback()
   }
 }
 
+/**
+ * @brief This function change the system state.
+ * @param N/A
+ * @return N/A
+ */
 static void changeSystemState()
 { 
   char* led1PinState = pinHighState;
@@ -100,6 +110,11 @@ static void changeSystemState()
   }
 }
 
+/**
+ * @brief This function prepare a message and send the message to the serial port.
+ * @param N/A
+ * @return N/A
+ */
 static void printMessage(char* led1PinState, char* led2PinState)
 {
   char* serialMessage;
@@ -140,6 +155,11 @@ static void printMessage(char* led1PinState, char* led2PinState)
   free(buttonPressStr);
 }
 
+/**
+ * @brief This function initialize the serial port, pins and interrupt.
+ * @param N/A
+ * @return N/A
+ */
 void setup() {
   Serial.begin(BAUDRATE, SERIAL_PORT_CONFIGS);
 
@@ -152,6 +172,12 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(BUTTON_PIN_NUMBER), buttonPressCallback, SYSTEM_CHANGE_EDGE_TRIGGERING);
 }
 
+/**
+ * @brief This function is main function. When the button was triggered,
+ * call the changeSystemState function.
+ * @param N/A
+ * @return N/A
+ */
 void loop()
 {
   if (lastButtonPressCounter > buttonPressCounter)
@@ -164,6 +190,5 @@ void loop()
   {
     lastButtonPressCounter = buttonPressCounter;
     changeSystemState();
-    Serial.println("");
   }
 }
