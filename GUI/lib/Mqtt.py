@@ -83,8 +83,12 @@ class Mqtt:
             
             self.receivedControls()
 
-            #self.window.changeLabelsAndLights(self.messageDict)
+            print("All messages were received successfully.\nSystem state is changing.")
+
             self.window.changeLabelsAndLightsSignal.emit(self.messageDict)
+
+            print("System state was changed successfully.")
+            print(f"New system state {self.messageDict['systemState']} led 1 status {self.messageDict['led1Status']} led 2 status {self.messageDict['led2Status']} button press counter {self.messageDict['buttonPressCount']}.\n\n")
 
             self.messageDict = {
                 "systemState": "",
@@ -92,8 +96,6 @@ class Mqtt:
                 "led2Status": "",
                 "buttonPressCount": ""
             }
-
-        print(receivedMessage)
     
     def receivedControls(self):
         self.systemStateReceived = False
