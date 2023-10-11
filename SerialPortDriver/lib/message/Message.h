@@ -3,10 +3,15 @@
  * @author Bilge Kağan ÖZKAN
  * @file Message.h
  * @defgroup Message
- * @brief This module has Message class.
+ * @brief This module includes Message class.
+ * @verbatim
+ * Message class collects the data which given to it, checks the collected data format and 
+ * prepares the data which will be send to the MQTT server.
+ * @endverbatim
  */
 
 #pragma once
+
 #include "MessageConfig.h"
 #include <iostream>
 #include "IniParserConfig.h"
@@ -14,25 +19,25 @@
 
 /**
  * @class Message
- * @brief Message class collect the data which given to it, check the collected data format and 
- * prepare the data which will be send to the MQTT server.
+ * @brief Message class collects the data which given to it, checks the collected data format and 
+ * prepares the data which will be send to the MQTT server.
  */
 class Message
 {
 private:
-    MessageConfig messageConfig;
-    int lenStartCharacter;
-    int lenSeperatorCharacter;
-    int lenEndCharacter;
-    int startCharacterCounter;
-    int seperatorCharacterCounter;
-    int endCharacterCounter;
-    int seperatedDataCounter;
-    std::string message;
-    std::vector<std::string> parsedMessage;
+    MessageConfig messageConfig;            ///< This variable keeps the MQTT message format.
+    int lenStartCharacter;                  ///< This variable keeps the length of message format of start characters.
+    int lenSeperatorCharacter;              ///< This variable keeps the length of message format of seperator characters.
+    int lenEndCharacter;                    ///< This variable keeps the length of message format of end characters.
+    int startCharacterCounter;              ///< This variable keeps the number of received start characters.
+    int seperatorCharacterCounter;          ///< This variable keeps the number of received seperator characters.
+    int endCharacterCounter;                ///< This variable keeps the number of received end characters.
+    int seperatedDataCounter;               ///< This variable keeps how much raw data will be acquired after parsing to prepare message.
+    std::string message;                    ///< This variable keeps the all received and not parsed data.
+    std::vector<std::string> parsedMessage; ///< This variable keeps the parsed message.
 
     /**
-     * @brief This function reset counter variables and message variable.
+     * @brief This function resets counter variables and message variable.
      * @param N/A.
      * @return N/A
      */
@@ -40,31 +45,45 @@ private:
     
 public:
     /**
-     * @brief This function create message format according to iniParserMessageConfig to check be collecting data.
-     * @param iniParserMessageConfig: This is message configuration referance whose type is IniParserMessageConfig.
+     * @brief This is default constructor.
+     * @param N/A
+     * @return N/A
+     */
+    Message() = default;
+
+    /**
+     * @brief This is default destructor.
+     * @param N/A
+     * @return N/A
+     */
+    ~Message() = default;
+
+    /**
+     * @brief This function creates message format according to iniParserMessageConfig enum to check be collecting data.
+     * @param iniParserMessageConfig: This is message configuration reference whose type is IniParserMessageConfig enum.
      * @return N/A
      */
     void createMessageFormat(IniParserMessageConfig& iniParserMessageConfig);
 
     /**
-     * @brief This function collect the data and check it.
+     * @brief This function collects the data and check it.
      * @param data: This is to be collected data.
-     * @return TRUE: If the data to be prepared to be ready.
-     * @return FALSE: If the data to be prepared to be not ready.
+     * @return TRUE: If the data to be prepared is ready.
+     * @return FALSE: If the data to be prepared is not ready.
      */
     bool acquireData(char& data);
 
     /**
-     * @brief This function prepare the data which will be send to the MQTT server.
+     * @brief This function prepares the message which will be send to the MQTT server.
      * @param N/A
      * @return N/A
      */
-    void prepareData();
+    void prepareMessage();
 
     /**
-     * @brief This function return the prepared the data which will be send to the MQTT server.
+     * @brief This function returns the prepared message which will be send to the MQTT server.
      * @param N/A
-     * @return std::vector<std::string>&: Prepared data vector referance.
+     * @return std::vector<std::string>&: Prepared message vector reference.
      */
     std::vector<std::string>& getParsedMessage();
 };

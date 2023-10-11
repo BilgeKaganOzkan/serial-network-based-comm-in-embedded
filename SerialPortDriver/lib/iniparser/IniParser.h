@@ -3,75 +3,74 @@
  * @author Bilge Kağan ÖZKAN
  * @file IniParser.h
  * @defgroup IniParser
- * @brief This module has IniParser class.
+ * @brief This module includes IniParser class.
+ * @verbatim
+ * IniParser class reads the "config.ini" file and parses to create Serial Port Config Data,
+ * MQTT Client Config Data and Message Config Data, which types are respectively IniParserSerialPortConfig,
+ * IniParserMqttClientConfig and IniParserMessageConfig enum.
+ * @endverbatim
  */
 
 #pragma once
+
 #include "IniParserConfig.h"
 #include "FailCode.h"
 
 /**
  * @class IniParser
- * @brief IniParser class read "config.ini" file and parse to create Serial Port Config Data,
+ * @brief IniParser class reads the "config.ini" file and parses to create Serial Port Config Data,
  * MQTT Client Config Data and Message Config Data, which types are respectively IniParserSerialPortConfig,
- * IniParserMqttClientConfig and IniParserMessageConfig.
+ * IniParserMqttClientConfig and IniParserMessageConfig enum.
  */
 class IniParser
 {
 private:
-    /**
-     * @brief This variable keep ......
-     */
-    FailCode<IniParserFailCode> failCode;
-
-    /**
-     * @brief This variable keep Serial Port Config Data.
-     */
-    IniParserSerialPortConfig serialPortConfig;
-
-    /**
-     * @brief This variable keep MQTT Client Config Data.
-     */
-    IniParserMqttClientConfig mqttClientConfig;
-
-    /**
-     * @brief This variable keep Message Config Data.
-     */
-    IniParserMessageConfig messageConfig;
+    FailCode<IniParserFailCode> failCode;       ///< This variable keeps objectified FailCode class with IniParserFailCode enum.
+    IniParserSerialPortConfig serialPortConfig; ///< This variable keeps Serial Port Config Data.
+    IniParserMqttClientConfig mqttClientConfig; ///< This variable keeps MQTT Client Config Data.
+    IniParserMessageConfig messageConfig;       ///< This variable keeps Message Config Data.
     
 public:
     /**
-     * @brief This function initialize all variables.
+     * @brief This constructor initializes the failCode object.
      * @param N/A
      * @return N/A
      */
     IniParser();
 
     /**
-     * @brief This function start the reading and parsing processes.
+     * @brief This is default destructor.
      * @param N/A
      * @return N/A
+     */
+    ~IniParser() = default;
+
+    /**
+     * @brief This function starts the reading and parsing processes.
+     * @param N/A
+     * @return throw INIPARSER_INI_FILE_COULD_NOT_OPENED: if config.ini file can not open.
+     *         throw INIPARSER_PARSING_ERROR: if the content of config.ini file is wrong.
      */
     void startParsing();
 
     /**
-     * @brief This function return the Serial Port Config Data.
+     * @brief This function returns the Serial Port Config Data.
      * @param N/A
-     * @return IniParserSerialPortConfig
+     * @return IniParserSerialPortConfig reference.
      */
     IniParserSerialPortConfig& getSerialPortConfigData();
 
     /**
-     * @brief This function return the MQTT Client Config Data.
+     * @brief This function returns the MQTT Client Config Data.
      * @param N/A
-     * @return IniParserMqttClientConfig
+     * @return IniParserMqttClientConfig reference.
      */
     IniParserMqttClientConfig& getMqttClientConfigData();
 
     /**
-     * @brief This function return the Message Config Data.
+     * @brief This function returns the Message Config Data.
      * @param N/A
-     * @return IniParserMessageConfig
+     * @return IniParserMessageConfig reference.
      */
     IniParserMessageConfig& getMessageConfigData();
 };

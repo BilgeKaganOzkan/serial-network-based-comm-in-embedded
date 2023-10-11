@@ -9,7 +9,7 @@
 #include <boost/property_tree/ini_parser.hpp>
 
 /**
- * @brief This function initialize failCode variable.
+ * @brief This constructor initializes the failCode object.
  * @param N/A
  * @return N/A
  */
@@ -19,9 +19,10 @@ IniParser::IniParser()
 }
 
 /**
- * @brief This function start the reading and parsing processes.
+ * @brief This function starts the reading and parsing processes.
  * @param N/A
- * @return N/A
+ * @return throw INIPARSER_INI_FILE_COULD_NOT_OPENED: if config.ini file can not open.
+ *         throw INIPARSER_PARSING_ERROR: if the content of config.ini file is wrong.
  */
 void IniParser::startParsing()
 {
@@ -33,7 +34,7 @@ void IniParser::startParsing()
     }
     catch(const boost::wrapexcept<boost::property_tree::ini_parser::ini_parser_error>& e)
     {
-        FAILCODE_SET_AND_EXIT(failCode, INI_FILE_CANNOT_OPEN);
+        FAILCODE_SET_AND_EXIT(failCode, INIPARSER_INI_FILE_COULD_NOT_OPENED);
     }
     
     try
@@ -60,14 +61,14 @@ void IniParser::startParsing()
     }
     catch(const boost::wrapexcept<boost::property_tree::ptree_bad_data>& e)
     {
-        FAILCODE_SET_AND_EXIT(failCode, PARSING_ERROR);
+        FAILCODE_SET_AND_EXIT(failCode, INIPARSER_PARSING_ERROR);
     }
 }
 
 /**
- * @brief This function return the Serial Port Config Data.
+ * @brief This function returns the Serial Port Config Data.
  * @param N/A
- * @return IniParserSerialPortConfig
+ * @return IniParserSerialPortConfig reference.
  */
 IniParserSerialPortConfig& IniParser::getSerialPortConfigData()
 {
@@ -75,9 +76,9 @@ IniParserSerialPortConfig& IniParser::getSerialPortConfigData()
 }
 
 /**
- * @brief This function return the MQTT Client Config Data.
+ * @brief This function returns the MQTT Client Config Data.
  * @param N/A
- * @return IniParserMqttClientConfig
+ * @return IniParserMqttClientConfig reference.
  */
 IniParserMqttClientConfig& IniParser::getMqttClientConfigData()
 {
@@ -85,9 +86,9 @@ IniParserMqttClientConfig& IniParser::getMqttClientConfigData()
 }
 
 /**
- * @brief This function return the Message Config Data.
+ * @brief This function returns the Message Config Data.
  * @param N/A
- * @return IniParserMessageConfig
+ * @return IniParserMessageConfig reference.
  */
 IniParserMessageConfig& IniParser::getMessageConfigData()
 {

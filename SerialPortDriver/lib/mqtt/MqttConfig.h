@@ -2,7 +2,7 @@
  * @{
  * @author Bilge Kağan ÖZKAN
  * @file MqttConfig.h
- * @brief This file have MqttFailCodeType, QOS types and MqttConfig structure.
+ * @brief This file includes MqttFailCodeType, QOS types and MqttConfig structure.
  */
 
 #pragma once
@@ -11,10 +11,10 @@
  */
 enum MqttFailCodeType
 {
-    MQTT_OK = 0, ///< This indicates that the process was successful.
-    MQTT_NOT_CONNECTED = 1, ///< This indicates that client could not connect the MQTT server.
-    MQTT_CONNECTION_ERROR = 2, ///< This indicates that an connection error was occured.
-    QOS_IS_INVALID = 3 ///< This indicates that QOS number is invalid.
+    MQTT_OK = 0,               ///< This indicates that the process was successful.
+    MQTT_NOT_CONNECTED = 1,    ///< This indicates that client could not connect to the MQTT server.
+    MQTT_CONNECTION_ERROR = 2, ///< This indicates that a connection error was occured.
+    MQTT_QOS_IS_INVALID = 3    ///< This indicates that QOS number is invalid.
 };
 
 /** @brief QOS Types 
@@ -32,13 +32,13 @@ enum QOS
  */
 struct MqttConfig
 {
-    std::string serverAdress; ///< This indicates MQTT Server ip adress.
-    std::string topic1; ///< This indicates first MQTT topic.
-    std::string topic2; ///< This indicates second MQTT topic.
-    std::string topic3; ///< This indicates third MQTT topic.
-    std::string topic4; ///< This indicates fourth MQTT topic.
-    std::string id; ///< This indicates unique id for connect MQTT server.
-    QOS qos; ///< This indicates QOS number.
+    std::string serverAdress; ///< This indicates the MQTT Server ip adress.
+    std::string topic1;       ///< This indicates the first MQTT topic.
+    std::string topic2;       ///< This indicates the second MQTT topic.
+    std::string topic3;       ///< This indicates the third MQTT topic.
+    std::string topic4;       ///< This indicates the fourth MQTT topic.
+    std::string id;           ///< This indicates the unique id for connect MQTT server.
+    QOS qos;                  ///< This indicates the QOS number.
 };
 
 /**@}*/

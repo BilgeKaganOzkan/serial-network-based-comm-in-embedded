@@ -12,31 +12,9 @@
 #include "Message.h"
 
 /**
- * @brief This function initialize the isConnect variable and failCode pointer.
- * @param N/A
- * @return N/A
- */
-MqttComm::MqttComm()
-{
-    isConnected = false;
-    failCode = MQTT_OK;
-    mqttClient = nullptr;
-}
-
-/**
- * @brief This function delete failCode pointer.
- * @param N/A
- * @return N/A
- */
-MqttComm::~MqttComm()
-{
-    delete mqttClient;
-}
-
-/**
- * @brief This function convert IniParserMqttClientConfig Structure type to MqttConfig Structure type.
+ * @brief This function converts IniParserMqttClientConfig Structure type to MqttConfig Structure type.
  * @param[in] mqttConfigData: IniParser MQTT Client Configuration Structure.
- * @return N/A
+ * @return throw MQTT_QOS_IS_INVALID: QOS from IniParserMqttClientConfig is not matching with any value in QOS enum.
  */
 void MqttComm::convertIniParserDataToMqttConfig(IniParserMqttClientConfig& mqttConfigData)
 {
@@ -61,18 +39,39 @@ void MqttComm::convertIniParserDataToMqttConfig(IniParserMqttClientConfig& mqttC
         mqttConfig.qos = QOS_2;
         break;
     default:
-        FAILCODE_SET_AND_EXIT<MqttFailCodeType>(failCode, QOS_IS_INVALID);
+        FAILCODE_SET_AND_EXIT<MqttFailCodeType>(failCode, MQTT_QOS_IS_INVALID);
         break;
-    }
-    
+    }  
 }
 
 /**
- * @brief This function connect to the MQTT server.
+ * @brief This function initializes the isConnect,failCode variables and mqttClient pointer.
+ * @param N/A
+ * @return N/A
+ */
+MqttComm::MqttComm()
+{
+    isConnected = false;
+    failCode = MQTT_OK;
+    mqttClient = nullptr;
+}
+
+/**
+ * @brief This function deletes mqttClient pointer.
+ * @param N/A
+ * @return N/A
+ */
+MqttComm::~MqttComm()
+{
+    delete mqttClient;
+}
+
+/**
+ * @brief This function connects to the MQTT server.
  * @param[in] mqttConfigData: IniParser MQTT Client Configuration Structure.
  * @return N/A
  */
-void MqttComm::ConnectServer(IniParserMqttClientConfig& mqttConfigData)
+void MqttComm::connectServer(IniParserMqttClientConfig& mqttConfigData)
 {
     convertIniParserDataToMqttConfig(mqttConfigData);
 
@@ -97,8 +96,8 @@ void MqttComm::ConnectServer(IniParserMqttClientConfig& mqttConfigData)
 }
 
 /**
- * @brief This function publish prepared data to topics as MQTT messages.
- * @param message: Message object referance.
+ * @brief This function publishes prepared message to topics as MQTT messages.
+ * @param message: Message object reference.
  * @return N/A
  */
 void MqttComm::publishMessage(Message& message)

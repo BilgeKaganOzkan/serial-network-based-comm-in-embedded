@@ -8,8 +8,23 @@
 #include <vector>
 
 /**
- * @brief This function create message format according to iniParserMessageConfig to check be collecting data.
- * @param iniParserMessageConfig: This is message configuration referance whose type is IniParserMessageConfig.
+ * @brief This function resets counter variables and message variable.
+ * @param N/A.
+ * @return N/A
+ */
+void Message::reset()
+{
+    startCharacterCounter = 0;
+    seperatorCharacterCounter = 0;
+    endCharacterCounter = 0;
+    seperatedDataCounter = 0;
+
+    message.clear();
+}
+
+/**
+ * @brief This function creates message format according to iniParserMessageConfig enum to check be collecting data.
+ * @param iniParserMessageConfig: This is message configuration reference whose type is IniParserMessageConfig enum.
  * @return N/A
  */
 void Message::createMessageFormat(IniParserMessageConfig& iniParserMessageConfig)
@@ -32,25 +47,10 @@ void Message::createMessageFormat(IniParserMessageConfig& iniParserMessageConfig
 }
 
 /**
- * @brief This function reset counter variables and message variable.
- * @param N/A.
- * @return N/A
- */
-void Message::reset()
-{
-    startCharacterCounter = 0;
-    seperatorCharacterCounter = 0;
-    endCharacterCounter = 0;
-    seperatedDataCounter = 0;
-
-    message.clear();
-}
-
-/**
- * @brief This function collect the data and check it.
+ * @brief This function collects the data and check it.
  * @param data: This is to be collected data.
- * @return TRUE: If the data to be prepared to be ready.
- * @return FALSE: If the data to be prepared to be not ready.
+ * @return TRUE: If the data to be prepared is ready.
+ * @return FALSE: If the data to be prepared is not ready.
  */
 bool Message::acquireData(char& data)
 {
@@ -109,7 +109,7 @@ bool Message::acquireData(char& data)
         if (endCharacterCounter == lenEndCharacter)
         {
             parsedMessage.clear();
-            prepareData();
+            prepareMessage();
             reset();
             return true;
         }
@@ -123,11 +123,11 @@ bool Message::acquireData(char& data)
 }
 
 /**
- * @brief This function prepare the data which will be send to the MQTT server.
+ * @brief This function prepares the message which will be send to the MQTT server.
  * @param N/A
  * @return N/A
  */
-void Message::prepareData()
+void Message::prepareMessage()
 {
     int pos = 0;
     std::string subMessage;
@@ -142,9 +142,9 @@ void Message::prepareData()
 }
 
 /**
- * @brief This function return the prepared the data which will be send to the MQTT server.
+ * @brief This function returns the prepared message which will be send to the MQTT server.
  * @param N/A
- * @return std::vector<std::string>&: Prepared data vector referance.
+ * @return std::vector<std::string>&: Prepared message vector reference.
  */
 std::vector<std::string>& Message::getParsedMessage()
 {

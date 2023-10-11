@@ -16,37 +16,19 @@
 #include "SerialComm.h"
 
 /**
- * @brief This function initialize the isStarted variable, failCode and serial pointers.
- * @param N/A
- * @return N/A
- */
-SerialComm::SerialComm()
-{
-	isStarted = false;
-	failCode = SERIAL_OK;
-	serialPort = nullptr;
-}
-
-/**
- * @brief This function delete the serial pointers.
- * @param N/A
- * @return N/A
- */
-SerialComm::~SerialComm()
-{
-	delete serialPort;
-}
-
-/**
- * @brief This function convert IniParserMqttClientConfig Structure type to SerialPortConfig Structure type.
- * @param[in] iniParserSerialConfigData: IniParser Serial Port Configuration Structure.
- * @return N/A
+ * @brief This function converts IniParserMqttClientConfig Structure type to SerialPortConfig Structure type.
+ * @param[in] iniParserSerialPortConfigData: IniParser Serial Port Configuration Structure.
+ * @return throw SERIALPORT_PORTNAME_IS_NONE: if port name is none.
+ * 		   throw SERIALPORT_BAUDRATE_OUT_OF_RANGE: baudRate from IniParserSerialPortConfig is not matching with any value in BaudRate enum.
+ * 		   throw SERIALPORT_DATABIT_OUT_OF_RANGE: dataBit from IniParserSerialPortConfig is not matching with any value in DataBit enum.
+ * 		   throw SERIALPORT_STOPBIT_OUT_OF_RANGE: stopBit from IniParserSerialPortConfig is not matching with any value in StopBit enum.
+ * 		   throw SERIALPORT_PARITYBIT_OUT_OF_RANGE: parityBit from IniParserSerialPortConfig is not matching with any value in ParityBit enum.
  */
 void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& iniParserSerialPortConfigData)
 {
 	if (iniParserSerialPortConfigData.portName == "")
 	{
-		FAILCODE_SET_AND_EXIT(failCode, PORTNAME_IS_NONE);
+		FAILCODE_SET_AND_EXIT(failCode, SERIALPORT_PORTNAME_IS_NONE);
 	}
 	else
 	{
@@ -68,7 +50,7 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& i
 		serialPortConfig.baudRate = BAUDRATE_115200;
 		break;
 	default:
-		FAILCODE_SET_AND_EXIT(failCode, BAUDRATE_OUT_OF_RANGE);
+		FAILCODE_SET_AND_EXIT(failCode, SERIALPORT_BAUDRATE_OUT_OF_RANGE);
 		break;
 	}
 
@@ -87,7 +69,7 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& i
 		serialPortConfig.dataBit = DATABIT_8;
 		break;
 	default:
-		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, DATABIT_OUT_OF_RANGE);
+		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_DATABIT_OUT_OF_RANGE);
 		break;
 	}
 
@@ -100,7 +82,7 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& i
 		serialPortConfig.stopBit = STOPBIT_2;
 		break;
 	default:
-		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, STOPBIT_OUT_OF_RANGE);
+		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_STOPBIT_OUT_OF_RANGE);
 		break;
 	}
 
@@ -118,12 +100,12 @@ void SerialComm::convertIniParserDataToSerialConfig(IniParserSerialPortConfig& i
 	}
 	else
 	{
-		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, PARITYBIT_OUT_OF_RANGE);
+		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_PARITYBIT_OUT_OF_RANGE);
 	}
 }
 
 /**
- * @brief This function configure the serial port.
+ * @brief This function configures the serial port.
  * @param N/A
  * @return N/A
  */
@@ -204,16 +186,44 @@ void SerialComm::assignSerialParams()
 }
 
 /**
- * @brief This function start the serial communication.
- * @param[in] iniParserSerialPortConfigData: IniParserSerialPortConfig Structure referance.
- * @param[in] mqtt: MqttComm object referance. 
+ * @brief This function initializes the isStarted, failCode variables and serialPort pointer.
+ * @param N/A
  * @return N/A
+ */
+SerialComm::SerialComm()
+{
+	isStarted = false;
+	failCode = SERIAL_OK;
+	serialPort = nullptr;
+}
+
+/**
+ * @brief This function deletes the serialPort pointer.
+ * @param N/A
+ * @return N/A
+ */
+SerialComm::~SerialComm()
+{
+	delete serialPort;
+}
+
+/**
+ * @brief This function starts the serial communication.
+ * @param[in] iniParserSerialPortConfigData: IniParserSerialPortConfig Structure reference.
+ * @param[in] mqtt: MqttComm object reference. 
+ * @return throw SERIALPORT_COMMUNICATION_ALREADY_STARTED: if communication was already started.
+ * 		   throw SERIALPORT_COULD_NOT_OPENED: if serial port can not open.
  */
 void SerialComm::startCommunication(IniParserSerialPortConfig& iniParserSerialPortConfigData, MqttComm& mqtt)
 {
 	if (isStarted == true)
 	{
-		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, COMMUNICATION_ALREADY_STARTED);
+		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_COMMUNICATION_ALREADY_STARTED);
+	}
+
+	if ((serialPort != nullptr) && (serialPort->is_open() == true))
+	{
+		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_COMMUNICATION_NOT_CLOSED);
 	}
 
 	convertIniParserDataToSerialConfig(iniParserSerialPortConfigData);
@@ -248,15 +258,16 @@ void SerialComm::startCommunication(IniParserSerialPortConfig& iniParserSerialPo
 }
 
 /**
- * @brief This function stop the serial communication.
+ * @brief This function stops the serial communication.
  * @param N/A
- * @return N/A
+ * @return throw SERIALPORT_COMMUNICATION_ALREADY_STOPPED: if communication was already stopped.
+ * 		   throw SERIALPORT_COULD_NOT_CLOSED: ifserial port can not closed.
  */
 void SerialComm::stopCommunication()
 {
 	if (isStarted == false)
 	{
-		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, COMMUNICATION_ALREADY_STOPPED);
+		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_COMMUNICATION_ALREADY_STOPPED);
 	}
 
 	serialPort->close();
@@ -265,26 +276,37 @@ void SerialComm::stopCommunication()
 	{
 		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_COULD_NOT_CLOSED);
 	}
+
+	isStarted = false;
 }
 
 /**
- * @brief This function read data from serial port.
- * @param[in] message: Message object referance.
+ * @brief This function reads data from serial port.
+ * @param[in] message: Message object reference.
  * @return N/A
  */
 void SerialComm::readDataFromSerial(Message& message)
 {
-	char data;
+	char data{};
 	bool isCommunicationContinue{false};
 
 	if (isStarted == false)
 	{
-		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, COMMUNICATION_NOT_STARTED);
+		FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_COMMUNICATION_NOT_STARTED);
 	}
 
 	while(!isCommunicationContinue)
 	{
-		boost::asio::read(*serialPort, boost::asio::buffer(&data, 1));
+		try
+		{
+			boost::asio::read(*serialPort, boost::asio::buffer(&data, 1));
+		}
+		catch(std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+			FAILCODE_SET_AND_EXIT<SerialFailCodeType>(failCode, SERIALPORT_READING_ERROR);
+		}
+
 		isCommunicationContinue = message.acquireData(data);
 		std::cout << data;
 	}
