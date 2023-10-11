@@ -18,7 +18,7 @@ static void changeSystemState();
 static void printMessage(char* led1PinState, char* led2PinState);
 
 /**
- * @brief This function increase buttonPressCounter when the button was triggered.
+ * @brief This function increases buttonPressCounter when the button was triggered.
  * @param N/A
  * @return N/A
  */
@@ -41,7 +41,7 @@ static void buttonPressCallback()
 }
 
 /**
- * @brief This function change the system state.
+ * @brief This function changes the system state.
  * @param N/A
  * @return N/A
  */
@@ -111,7 +111,7 @@ static void changeSystemState()
 }
 
 /**
- * @brief This function prepare a message and send the message to the serial port.
+ * @brief This function prepares a message and sends the message to the serial port.
  * @param N/A
  * @return N/A
  */
@@ -156,7 +156,7 @@ static void printMessage(char* led1PinState, char* led2PinState)
 }
 
 /**
- * @brief This function initialize the serial port, pins and interrupt.
+ * @brief This function initializes the serial port, pins and interrupt.
  * @param N/A
  * @return N/A
  */
@@ -174,7 +174,7 @@ void setup() {
 
 /**
  * @brief This function is main function. When the button was triggered,
- * call the changeSystemState function.
+ * calls the changeSystemState function.
  * @param N/A
  * @return N/A
  */
