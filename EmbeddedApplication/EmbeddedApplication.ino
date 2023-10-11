@@ -1,10 +1,10 @@
 #include "Configuration.h"
 
-unsigned long lastDebounceTime = 0;
-unsigned long lastRunTime = 0;
-unsigned long buttonPressCounter = 0;
-unsigned long lastButtonPressCounter = 0;
-uint8_t systemStateCounter = INITIAL_SYSTEM_STATE + 1;
+unsigned long lastDebounceTime = 0;                     ///< This variable keeps the last debounce time.
+unsigned long lastRunTime = 0;                          ///< This variable keeps the last run time.
+unsigned long buttonPressCounter = 0;                   ///< This variable keeps the button press value.
+unsigned long lastButtonPressCounter = 0;               ///< This variable keeps the last button press value.
+uint8_t systemStateCounter = INITIAL_SYSTEM_STATE + 1;  ///< This variable keeps the system state value.
 
 char* startCharacters = STARTS_CHARACTERS;
 char* seperatorCharacters = SEPERATOR_CHARACTERS;
