@@ -1,0 +1,12 @@
+getmac==0.9.4
+paho-mqtt==1.6.1
+PyQt5==5.15.9
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.12.2
+pyserial==3.5
+python-apt==2.4.0+ubuntu2
+python-debian==0.1.43+ubuntu1.1
+systemd-python==234
+ubuntu-advantage-tools==8001
+ubuntu-drivers-common==0.0.0
+urllib3==1.26.5
