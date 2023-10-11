@@ -1,3 +1,21 @@
+"""!
+\addtogroup MainWindow
+@{
+@author Bilge Kağan ÖZKAN
+@file MainWindow.py
+@defgroup MainWindow
+@brief This module includes MainWindow and MqttSettingsWindow classes
+@verbatim
+MainWindow class provides an interface to show the system state, the led 1 pin state, 
+the led 2 pin state and the button press counter visually.
+
+MqttSettingsWindow class provides user an interface to configure mqtt connection settings.
+And, it saves all configurations to mqttConfig.ini file when users press connection button and
+get configurations and shows it to users when this class object call. Also, after press the connect button,
+this class connect to the MQTT server using MQTT class.
+@endverbatim
+"""
+
 from PyQt5.QtWidgets import (
     QMainWindow, QApplication,
     QLabel, QAction, QStatusBar, 
@@ -12,9 +30,17 @@ from .Mqtt import Mqtt
 import time
 
 class MainWindow(QMainWindow):
-    changeLabelsAndLightsSignal = pyqtSignal(dict)
+    """! This class provides an interface to show the system state, the led 1 pin state, 
+    the led 2 pin state and the button press counter visually. 
+    """
+    changeLabelsAndLightsSignal = pyqtSignal(dict) # ///< This variable indicates signal to change system state calling changeLabelsAndLights function
 
     def __init__(self) -> None:
+        """! This function initialize all variables, create objects from Mqtt and MqttSettingsWindow classes.
+        Also, it prepares GUI.
+        @param N/A
+        @return N/A
+        """
         super().__init__()
         
         self.mqtt = Mqtt(self)
@@ -110,43 +136,62 @@ class MainWindow(QMainWindow):
 
         buttonAction.trigger()
 
-    def mqttSettingsButtonClick(self, s) -> None:
+    def mqttSettingsButtonClick(self, s:bool) -> None:
+        """! This function is a callback function. It calls after MQTT Settings button was clicked.
+        Also, this function objectifies MqttSettingsWindow class and triggers show event of MqttSettingsWindow object.
+        @param[in] s: This variable indicates that wheather their connect was triggered or not.
+        @return N/A
+        """
         mqttSettingsWindow = MqttSettingsWindow(self.mqtt)
         mqttSettingsWindow.exec_()
     
-    def changeLabelsAndLights(self, messageDict: dict) -> None:
+    def changeLabelsAndLights(self, receivedMessageDict: dict) -> None:
+        """! This function changes system state and show users received message visually.
+        @param[in] receivedMessageDict: This variable indicates received message from mqtt topics.
+        @return N/A
+        """
         isMessageContentRight = False
         sytemState = 0
         backGround = "background-image: url('./designs/systemState0.png');"
 
-        if (messageDict["systemState"] == "0" and messageDict["led1Status"] == "Off" and messageDict["led2Status"] == "Off"):
+        if (receivedMessageDict["systemState"] == "0" and receivedMessageDict["led1Status"] == "Off" and receivedMessageDict["led2Status"] == "Off"):
             isMessageContentRight = True
-            systemState = int(messageDict["systemState"])
+            systemState = int(receivedMessageDict["systemState"])
             backGround = "background-image: url('./designs/systemState0.png');"
-        elif (messageDict["systemState"] == "1" and messageDict["led1Status"] == "Off" and messageDict["led2Status"] == "On"):
+        elif (receivedMessageDict["systemState"] == "1" and receivedMessageDict["led1Status"] == "Off" and receivedMessageDict["led2Status"] == "On"):
             isMessageContentRight = True
-            systemState = int(messageDict["systemState"])
+            systemState = int(receivedMessageDict["systemState"])
             backGround = "background-image: url('./designs/systemState1.png');"
-        elif (messageDict["systemState"] == "2" and messageDict["led1Status"] == "On" and messageDict["led2Status"] == "Off"):
+        elif (receivedMessageDict["systemState"] == "2" and receivedMessageDict["led1Status"] == "On" and receivedMessageDict["led2Status"] == "Off"):
             isMessageContentRight = True
-            systemState = int(messageDict["systemState"])
+            systemState = int(receivedMessageDict["systemState"])
             backGround = "background-image: url('./designs/systemState2.png');"
-        elif (messageDict["systemState"] == "3" and messageDict["led1Status"] == "On" and messageDict["led2Status"] == "On"):
+        elif (receivedMessageDict["systemState"] == "3" and receivedMessageDict["led1Status"] == "On" and receivedMessageDict["led2Status"] == "On"):
             isMessageContentRight = True
-            systemState = int(messageDict["systemState"])
+            systemState = int(receivedMessageDict["systemState"])
             backGround = "background-image: url('./designs/systemState3.png');"
         else:
             pass
 
         if (isMessageContentRight == True):
             self.setStyleSheet(backGround)
-            self.systemStateLabel.setText("System State: " + messageDict["systemState"])
-            self.led1Label.setText("Led 1 State: " + messageDict["led1Status"])
-            self.led2Label.setText("Led 2 State: " + messageDict["led2Status"])
-            self.buttonPressCountLabel.setText("Button Press Count: " + messageDict["buttonPressCount"])
+            self.systemStateLabel.setText("System State: " + receivedMessageDict["systemState"])
+            self.led1Label.setText("Led 1 State: " + receivedMessageDict["led1Status"])
+            self.led2Label.setText("Led 2 State: " + receivedMessageDict["led2Status"])
+            self.buttonPressCountLabel.setText("Button Press Count: " + receivedMessageDict["buttonPressCount"])
 
 class MqttSettingsWindow(QDialog):
-    def __init__(self, mqtt: Mqtt):
+    """! This class provides user an interface to configure mqtt connection settings visually.
+    And, it saves all configurations to mqttConfig.ini file when users press connection button and
+    get configurations and shows it to users when this class object call. Also, after press the connect button,
+    this class connect to the MQTT server using MQTT class.
+    """
+
+    def __init__(self, mqtt: Mqtt) -> None:
+        """! This function initialize all variables. Also, it prepares GUI for MQTT configuration.
+        @param[in] mqtt: This variable indicates Mqtt class object.
+        @return N/A
+        """
         super().__init__()
 
         self.mqtt = mqtt
@@ -251,7 +296,11 @@ class MqttSettingsWindow(QDialog):
 
         self.readIniFile()
     
-    def readIniFile(self):
+    def readIniFile(self) -> None:
+        """! This function read mqttConfig.ini file and show users visually.
+        @param N/A
+        @return N/A
+        """
         try:
             self.config.read(self.iniFilePath)
 
@@ -286,7 +335,12 @@ class MqttSettingsWindow(QDialog):
             self.led2StateTextbox.setText("")
             self.buttonPressCountTextbox.setText("")
     
-    def setMqttSettings(self):
+    def setMqttSettings(self) -> None:
+        """! This function is a callback function. It calls after connect button was clicked.
+        It connects to the MQTT server using Mqtt class object.
+        @param N/A
+        @return N/A
+        """
         checkedSuccess = self.checkTextBoxes()
 
         if (checkedSuccess):       
@@ -332,8 +386,12 @@ class MqttSettingsWindow(QDialog):
             else:
                 QMessageBox.critical(self, "Error", self.mqtt.errorMessage)
             
-    
     def checkTextBoxes(self) -> bool:
+        """! This function checks configurations from getting user.
+        @param N/A
+        @return TRUE: if all textboxes are valid.
+                FALSE: any textbox is invalid.
+        """
         errorMessages = ""
 
         if (self.serverAddressTextbox.text() == ""):
@@ -365,8 +423,15 @@ class MqttSettingsWindow(QDialog):
         else:
             return True
     
-    def closeEvent(self, event):
+    def closeEvent(self, event) -> None:
+        """! This function is a callback function. It calls after close event triggered.
+        Also, mqtt client not connect to the MQTT server, this function ignores the close event.
+        @param event: This variable indicates close event object.
+        @return N/A
+        """
         if self.mqttConnected == True:
             event.accept()
         else:
             event.ignore()
+
+# @}
