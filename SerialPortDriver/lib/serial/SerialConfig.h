@@ -51,9 +51,9 @@ enum SerialFailCodeType
 {
 	SERIAL_OK = 0,                                 ///< This indicates that the process was successful.
 	SERIALPORT_BAUDRATE_OUT_OF_RANGE = 1,          ///< This indicates that the baudrate is not in BaudRate enum type.
-	SERIALPORT_DATABIT_OUT_OF_RANGE = 2,           ///< This indicates that the data bits is not in DataBit enum type.
+	SERIALPORT_DATABIT_OUT_OF_RANGE = 2,           ///< This indicates that the data bits are not in DataBit enum type.
 	SERIALPORT_PARITYBIT_OUT_OF_RANGE = 3,         ///< This indicates that the parity bit is not in ParityBit enum type.
-	SERIALPORT_STOPBIT_OUT_OF_RANGE = 4,           ///< This indicates that the stop bits is not in StopBit enum type.
+	SERIALPORT_STOPBIT_OUT_OF_RANGE = 4,           ///< This indicates that the stop bits are not in StopBit enum type.
 	SERIALPORT_PORTNAME_IS_NONE = 5,               ///< This indicates that the serial port name is none.
 	SERIALPORT_COULD_NOT_OPENED  = 6,              ///< This indicates that the serial port could not opened.
 	SERIALPORT_COULD_NOT_CLOSED = 7,               ///< This indicates that the serial port was not closed.

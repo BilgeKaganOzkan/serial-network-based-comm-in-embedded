@@ -26,23 +26,23 @@ void printSerialFailCode(SerialFailCodeType& failCode)
     {
     case SERIALPORT_BAUDRATE_OUT_OF_RANGE:
         std::cout << "ERROR: The baudrate is out of range!!!" << std::endl;
-        std::cout << "Please chech the config.ini file";
+        std::cout << "Please check the config.ini file";
         break;
     case SERIALPORT_DATABIT_OUT_OF_RANGE:
         std::cout << "ERROR: The data bit is out of range!!!" << std::endl;
-        std::cout << "Please chech the config.ini file";
+        std::cout << "Please check the config.ini file";
         break;
     case SERIALPORT_PARITYBIT_OUT_OF_RANGE:
         std::cout << "ERROR: The parity bit is out of range!!!" << std::endl;
-        std::cout << "Please chech the config.ini file";
+        std::cout << "Please check the config.ini file";
         break;
     case SERIALPORT_STOPBIT_OUT_OF_RANGE:
         std::cout << "ERROR: The stop bit is out of range!!!" << std::endl;
-        std::cout << "Please chech the config.ini file";
+        std::cout << "Please check the config.ini file";
         break;
     case SERIALPORT_PORTNAME_IS_NONE:
         std::cout << "ERROR: Serial Port name is NONE!!!" << std::endl;
-        std::cout << "Please chech the config.ini file";
+        std::cout << "Please check the config.ini file";
         break;
     case SERIALPORT_READING_ERROR:
         std::cout << "ERROR: An error occured while reading from serial port!!!";
@@ -76,7 +76,7 @@ void printMqttFailCode(MqttFailCodeType& failCode)
         break;
     case MQTT_QOS_IS_INVALID:
         std::cout << "ERROR: QOS is invalid!!!" << std::endl;
-        std::cout << "Please chech the config.ini file";
+        std::cout << "Please check the config.ini file";
     default:
         std::cout << "ERROR: " << failCode;
         break;

@@ -2,7 +2,7 @@
  * @{
  * @author Bilge Kağan ÖZKAN
  * @file MessageConfig.h
- * @brief This file includes MessageConfig Structure for Message class.
+ * @brief This file includes MessageConfig Structure for the Message class.
  */
 
 #pragma once

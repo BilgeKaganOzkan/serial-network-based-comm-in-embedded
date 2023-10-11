@@ -23,7 +23,7 @@ void Message::reset()
 }
 
 /**
- * @brief This function creates message format according to iniParserMessageConfig enum to check be collecting data.
+ * @brief This function creates message format according to iniParserMessageConfig enum to check the data will be collected.
  * @param iniParserMessageConfig: This is message configuration reference whose type is IniParserMessageConfig enum.
  * @return N/A
  */

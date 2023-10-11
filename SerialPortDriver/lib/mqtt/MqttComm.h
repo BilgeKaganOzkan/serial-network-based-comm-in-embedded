@@ -26,7 +26,7 @@
 class MqttComm
 {
 private:
-    bool isConnected;                    ///< This variable keeps whaether connected to the MQTT server or not.
+    bool isConnected;                    ///< This variable keeps whether connected to the MQTT server or not.
     mqtt::client* mqttClient;            ///< This pointer keeps mqtt::client address from paho mqtt library.
     MqttConfig mqttConfig;               ///< This variable keeps the Mqtt configurations.
     FailCode<MqttFailCodeType> failCode; ///< This variable keeps objectified FailCode class with MqttFailCodeType enum.
@@ -40,7 +40,7 @@ private:
     
 public:
     /**
-     * @brief This function initializes the isConnect,failCode variables and mqttClient pointer.
+     * @brief This function initializes the isConnect, failCode variables and mqttClient pointer.
      * @param N/A
      * @return N/A
      */

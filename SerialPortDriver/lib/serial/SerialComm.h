@@ -5,7 +5,7 @@
  * @defgroup SerialComm
  * @brief This module includes SerialComm class.
  * @verbatim
- * SerialComm class connects the serial port, starts the communication and reads the data from serial port.
+ * SerialComm class connects to the serial port, starts the communication and reads the data from serial port.
  * @endverbatim
  */
 
@@ -20,7 +20,7 @@
 
 /**
  * @class SerialComm
- * @brief SerialComm class connects the serial port, starts the communication and reads the data from serial port.
+ * @brief SerialComm class connects to the serial port, starts the communication and reads the data from serial port.
  */
 class SerialComm
 {
@@ -76,7 +76,7 @@ public:
 	 * @brief This function stops the serial communication.
 	 * @param N/A
 	 * @return throw SERIALPORT_COMMUNICATION_ALREADY_STOPPED: if communication was already stopped.
-	 * 		   throw SERIALPORT_COULD_NOT_CLOSED: ifserial port can not closed.
+	 * 		   throw SERIALPORT_COULD_NOT_CLOSED: if serial port can not closed.
 	 */
 	void stopCommunication();
 
