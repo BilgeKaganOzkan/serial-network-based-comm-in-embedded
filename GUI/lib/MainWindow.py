@@ -21,9 +21,9 @@ from PyQt5.QtWidgets import (
     QLabel, QAction, QStatusBar, 
     QWidget, QVBoxLayout, 
     QGridLayout, QDialog, QLineEdit, 
-    QPushButton, QMessageBox
+    QPushButton, QMessageBox, QStyle
 )
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QIcon
 from PyQt5.QtCore import (Qt, pyqtSignal)
 import configparser
 from .Mqtt import Mqtt
@@ -208,6 +208,8 @@ class MqttSettingsWindow(QDialog):
             }
 
         self.iniFilePath = "config/mqttConfig.ini"
+        self.showPasswordIcon = QIcon('icons/showPasswordIcon.png')
+        self.hidePasswordIcon = QIcon('icons/hidePasswordIcon')
 
         self.config = configparser.ConfigParser()
 
@@ -290,6 +292,7 @@ class MqttSettingsWindow(QDialog):
 
         self.passwordTextbox = QLineEdit(container)
         self.passwordTextbox.setGeometry(labelPositionX + labelWidth ,labelPositionY + labelPositionYSlide * 3, labelWidth, labelHeight)
+        self.passwordTextbox.setEchoMode(QLineEdit.Password)
 
         self.systemStateTextbox = QLineEdit(container)
         self.systemStateTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 4, labelWidth, labelHeight)
@@ -307,6 +310,13 @@ class MqttSettingsWindow(QDialog):
         self.setSettingsButton.setGeometry(270, 360, 100, 30)
         self.setSettingsButton.setText("Connect")
         self.setSettingsButton.clicked.connect(self.setMqttSettings)
+
+        self.showPasswordButton = QPushButton(container)
+        self.showPasswordButton.setGeometry(labelPositionX + labelWidth * 2 + 7, labelPositionY + labelPositionYSlide * 3 + 6, 20, 20)
+        self.showPasswordButton.clicked.connect(self.showOrHidePassword)
+        self.showPasswordButton.setIcon(self.showPasswordIcon)
+        self.showPasswordButton.setIconSize(self.showPasswordIcon.actualSize(self.showPasswordButton.size()))
+        self.showPasswordButton.setStyleSheet('background-color:white; border: none;')
 
         self.layout = QVBoxLayout()
         self.layout.addWidget(container)
@@ -415,6 +425,21 @@ class MqttSettingsWindow(QDialog):
                 self.close()
             else:
                 QMessageBox.critical(self, "Error", self.mqtt.errorMessage)
+    
+    def showOrHidePassword(self) -> None:
+        """! This function display or hide password in password text box when user click password button.
+        @param N/A
+        @return N/A
+        """
+        if self.passwordTextbox.echoMode() == QLineEdit.Password:
+            self.passwordTextbox.setEchoMode(QLineEdit.Normal)
+            self.showPasswordButton.setIcon(self.hidePasswordIcon)
+            self.showPasswordButton.setIconSize(self.hidePasswordIcon.actualSize(self.showPasswordButton.size()))
+        else:
+            self.passwordTextbox.setEchoMode(QLineEdit.Password)
+            self.showPasswordButton.setIcon(self.showPasswordIcon)
+            self.showPasswordButton.setIconSize(self.showPasswordIcon.actualSize(self.showPasswordButton.size()))
+
             
     def checkTextBoxes(self) -> bool:
         """! This function checks configurations from getting user.
