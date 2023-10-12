@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 
+if(NOT UNIX)
+    message(FATAL_ERROR "This project only work on Linux!!!")
+endif()
+
 project(main
         VERSION 1.0)
 
