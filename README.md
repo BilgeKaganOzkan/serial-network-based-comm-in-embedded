@@ -112,6 +112,16 @@ Your only need [NOTE 2](#note-2)
 ### Using
 To run this part, you only need to run runGUI.sh with following command
 ```
+sh runGUI.sh
+```
+
+# Documentation
+You can use doxygen to learn more code details and code connections about Serial Port Driver and GUI parts and using the commands below in their own folders
+```
+doxygen Doxyfile
+```
+After this, **doxygen/** folder will be created. You can display the **doxygen/index.html** document in a web browser.
+```
 sudo sh runGUI.sh
 ```
 After this, A window will be opened. in this window, user is able to set mqtt configurations. After click the connect button in this window, A main window will be opened and messages will be displayed to users visually.
