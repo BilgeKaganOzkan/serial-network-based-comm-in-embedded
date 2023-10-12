@@ -4,7 +4,7 @@
 @author Bilge Kağan ÖZKAN
 @file main.py
 @defgroup main
-@brief This module main module of the project.
+@brief This module is the main module of the project.
 @verbatim
 This module objectifies MainWindow class and show user the MainWindow object visually.
 @endverbatim

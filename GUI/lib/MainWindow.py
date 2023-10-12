@@ -11,7 +11,7 @@ the led 2 pin state and the button press counter visually.
 
 MqttSettingsWindow class provides user an interface to configure mqtt connection settings.
 And, it saves all configurations to mqttConfig.ini file when users press connection button and
-get configurations and shows it to users when this class object call. Also, after press the connect button,
+get configurations and shows it to users when this class object is called. Also, after press the connect button,
 this class connect to the MQTT server using MQTT class.
 @endverbatim
 """
@@ -33,10 +33,10 @@ class MainWindow(QMainWindow):
     """! This class provides an interface to show the system state, the led 1 pin state, 
     the led 2 pin state and the button press counter visually. 
     """
-    changeLabelsAndLightsSignal = pyqtSignal(dict) # ///< This variable indicates signal to change system state calling changeLabelsAndLights function
+    changeLabelsAndLightsSignal = pyqtSignal(dict) # ///< This variable indicates the signal to change system state by means of calling changeLabelsAndLights function
 
     def __init__(self) -> None:
-        """! This function initialize all variables, create objects from Mqtt and MqttSettingsWindow classes.
+        """! This function initializes all variables, creates objects from Mqtt and MqttSettingsWindow classes.
         Also, it prepares GUI.
         @param N/A
         @return N/A
@@ -139,7 +139,7 @@ class MainWindow(QMainWindow):
     def mqttSettingsButtonClick(self, s:bool) -> None:
         """! This function is a callback function. It calls after MQTT Settings button was clicked.
         Also, this function objectifies MqttSettingsWindow class and triggers show event of MqttSettingsWindow object.
-        @param[in] s: This variable indicates that wheather their connect was triggered or not.
+        @param[in] s: This variable indicates that whether their connection was triggered or not.
         @return N/A
         """
         mqttSettingsWindow = MqttSettingsWindow(self.mqtt)
@@ -181,14 +181,14 @@ class MainWindow(QMainWindow):
             self.buttonPressCountLabel.setText("Button Press Count: " + receivedMessageDict["buttonPressCount"])
 
 class MqttSettingsWindow(QDialog):
-    """! This class provides user an interface to configure mqtt connection settings visually.
+    """! This class provides an user interface to configure mqtt connection settings visually.
     And, it saves all configurations to mqttConfig.ini file when users press connection button and
     get configurations and shows it to users when this class object call. Also, after press the connect button,
     this class connect to the MQTT server using MQTT class.
     """
 
     def __init__(self, mqtt: Mqtt) -> None:
-        """! This function initialize all variables. Also, it prepares GUI for MQTT configuration.
+        """! This function initializes all variables. Also, it prepares GUI for MQTT configuration.
         @param[in] mqtt: This variable indicates Mqtt class object.
         @return N/A
         """
@@ -315,7 +315,7 @@ class MqttSettingsWindow(QDialog):
         self.readIniFile()
     
     def readIniFile(self) -> None:
-        """! This function read mqttConfig.ini file and show users visually.
+        """! This function reads mqttConfig.ini file and shows users visually.
         @param N/A
         @return N/A
         """
@@ -340,8 +340,7 @@ class MqttSettingsWindow(QDialog):
             self.led2StateTextbox.setText(self.mqttSettingsDict["led2StateTopic"])
             self.buttonPressCountTextbox.setText(self.mqttSettingsDict["buttonPressCountTopic"])
 
-        except Exception as e:
-            print(e)
+        except:
             self.mqttSettingsDict = {
             "serverAddress": "",
             "port": 0,
@@ -363,7 +362,7 @@ class MqttSettingsWindow(QDialog):
             self.buttonPressCountTextbox.setText("")
     
     def setMqttSettings(self) -> None:
-        """! This function is a callback function. It calls after connect button was clicked.
+        """! This function is a callback function. It is called after connect button was clicked.
         It connects to the MQTT server using Mqtt class object.
         @param N/A
         @return N/A
@@ -461,7 +460,7 @@ class MqttSettingsWindow(QDialog):
             return True
     
     def closeEvent(self, event) -> None:
-        """! This function is a callback function. It calls after close event triggered.
+        """! This function is a callback function. It is called after close event triggered.
         Also, mqtt client not connect to the MQTT server, this function ignores the close event.
         @param event: This variable indicates close event object.
         @return N/A
