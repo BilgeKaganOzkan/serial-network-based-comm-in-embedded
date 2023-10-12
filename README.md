@@ -18,6 +18,35 @@ git clone https://github.com/BilgeKaganOzkan/serial-network-based-comm-in-embedd
 cd serial-network-based-comm-in-embedded/
 sudo sh install.sh
 ```
+### Testing The Project
+To test the project you have to have [Mosquitto](https://mosquitto.org/). If you don't have, you can instal using following commands:
+```
+sudo apt-get update
+sudo apt-get install mosquitto
+sudo apt-get install mosquitto-clients
+sudo systemctl start mosquitto
+sudo systemctl enable mosquitto
+```
+After this, if you want to only access to the mosquitto with user name and password, please follow the instructions:
+
+First, you have to define username and password in passwd file using following command:
+```
+mosquitto_passwd -c /etc/mosquitto/passwd your_username
+```
+Second, you have to configure **mosquitto.conf** file using following command:
+```
+sudo nano /etc/mosquitto/mosquitto.conf
+```
+Third, you have to paste command below to end of the file. **important NOTE: There have to be new line characters between all words and  must not any space character end of line in mosquitto.conf file** 
+```
+allow_anonymous false
+
+password_file /etc/mosquitto/mosquitto.conf
+```
+Finally, you have to save and exit this file and restart the mosquitto service using following command:
+```
+sudo systemctl restart mosquitto
+```
 **NOTE2: For Serial Port Driver and GUI part dependencies, you only need to run install.sh file.**
 ## Embedded System Part
 
