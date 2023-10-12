@@ -68,10 +68,10 @@ class Mqtt:
         @return N/A
         """
         if rc == 0:
-            print("Connected to MQTT Broker!")
+            print("Connected to MQTT Server.")
             self.subscribeTopics()
         else:
-            errorMessage += f"Failed to connect, return code {rc}\n"
+            self.errorMessage = "Could not connected to the MQTT Server.\nPlease check server, username, password and your internet connection.\n"
             print(f"Failed to connect, return code {rc}\n")
     
     def onDisConnect(self, client, userdata, rc) -> None:
@@ -152,9 +152,12 @@ class Mqtt:
         @return N/A
         """
         try:
+            if self.client.is_connected == True:
+                self.client.disconnect()
+                
             self.errorMessage = ""
             self.client.username_pw_set(self.mqttSettingsDict["username"], self.mqttSettingsDict["password"])
-            self.client.connect(self.mqttSettingsDict["serverAddress"], self.mqttSettingsDict["port"])
+            self.client.connect(self.mqttSettingsDict["serverAddress"], self.mqttSettingsDict["port"], keepalive = 20)
             self.subscribeTopics()
         except Exception as e:
             self.errorMessage = "An error occured. Please check MQTT Server Address, Port and your internet connection\n" + str(e) + "\n"
