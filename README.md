@@ -10,11 +10,15 @@ The project consists of 3 parts:
 *NOTE1: All the system only available for **linux***.
 &nbsp;
 
-<a id="note-2"></a> 
-***NOTE2: For Serial Port Driver and GUI part dependencies, you only need to run install.sh file with the command below***
+<a id="install"></a> 
+### Installation The Project
+You can install the project and install Serial Port Driver and GUI part dependencies using following commands:
 ```
+git clone https://github.com/BilgeKaganOzkan/serial-network-based-comm-in-embedded.git
+cd serial-network-based-comm-in-embedded/
 sudo sh install.sh
 ```
+**NOTE2: For Serial Port Driver and GUI part dependencies, you only need to run install.sh file.**
 ## Embedded System Part
 
 The main ideas of the embedded system part are to change system state whenever button is pressed and display these changes via 2 leds (led 1 is red, led 2 is green). Also, to send system status, led 1 status, led 2 status and button press counter in a specific message format using UART. The specific message format is defined as **$$SystemState,LedState1,LedState2,ButtonPressCount**** Example for a message: **$$1,Off,On,5****
@@ -85,7 +89,7 @@ This part coding using **C++ language**.
 While project was realizing, [Boost](https://www.boost.org/) and [Paho Mqtt C++](https://github.com/eclipse/paho.mqtt.cpp) libraries were used.
 
 ### Installation
-Your only need is [NOTE 2](#note-2) or [Install Without install.sh](#without-install) 
+Your only need is [Installation](#install) or [Installation Without install.sh](#without-install) 
 
 ### Using
 To build and run this part, you only need to run runSerialPortDriver.sh with following command
@@ -107,7 +111,7 @@ All configurations are in **config/config.ini/** file. By changing these you can
 The main ideas of GUI are connect MQTT server and user defined 4 topics, collect the message from topics and show the messages to users visually.
 This part was realized via **Python language** and [PyQt5](https://pypi.org/project/PyQt5/) library.
 ### Installation
-Your only need is [NOTE 2](#note-2) or [Install Without install.sh](#without-install)
+Your only need is [Installation](#install) or [Installation Without install.sh](#without-install)
 
 ### Using
 To run this part, you only need to run runGUI.sh with following command:
