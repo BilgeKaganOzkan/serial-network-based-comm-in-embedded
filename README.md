@@ -18,6 +18,8 @@ git clone https://github.com/BilgeKaganOzkan/serial-network-based-comm-in-embedd
 cd serial-network-based-comm-in-embedded/
 sudo sh install.sh
 ```
+NOTE: If **installations/** folder was not removed automatically, you can delete it.
+
 ### Testing The Project
 To test the project you have to have [Mosquitto](https://mosquitto.org/). If you don't have, you can instal using following commands:
 ```
