@@ -85,7 +85,7 @@ This part coding using **C++ language**.
 While project was realizing, [Boost](https://www.boost.org/) and [Paho Mqtt C++](https://github.com/eclipse/paho.mqtt.cpp) libraries were used.
 
 ### Installation
-Your only need is [NOTE 2](note-2) or [Install Without install.sh](without-install) 
+Your only need is [NOTE 2](#note-2) or [Install Without install.sh](#without-install) 
 
 ### Using
 To build and run this part, you only need to run runSerialPortDriver.sh with following command
@@ -107,7 +107,7 @@ All configurations are in **config/config.ini/** file. By changing these you can
 The main ideas of GUI are connect MQTT server and user defined 4 topics, collect the message from topics and show the messages to users visually.
 This part was realized via **Python language** and [PyQt5](https://pypi.org/project/PyQt5/) library.
 ### Installation
-Your only need is [NOTE 2](note-2) or [Install Without install.sh](without-install) 
+Your only need is [NOTE 2](#note-2) or [Install Without install.sh](#without-install)
 
 ### Using
 To run this part, you only need to run runGUI.sh with following command:
