@@ -154,15 +154,17 @@ sudo python3 main.py
 After this, A window will be opened. In this window, user is able to set mqtt configurations. After click the connect button in this window, A main window will be opened and messages will be displayed to users visually.
 
 # Documentation
-You can use **doxygen** to learn more code details and code connections about Serial Port Driver and GUI parts and using the commands below in their own folders
+**Documents/GUI_Documents/** and **Documents/SerialPortDriver_Documents/** folders were created by doxygen to learn more code details and code connections. You can see doxygen outputs using run **Documents/<part_name>_Documents/html/index.html** in a web browser
+
+If you change codes, you can use **doxygen** to generate new doxygen outputs and using the commands below in <part_name> folder
 ```
 doxygen Doxyfile
 ```
-After this, **<part_name>_Doxygen/** folder will be created. You can display the **<part_name>_Doxygen/index.html** document in a web browser.
+After this, **<part_name>_Documents/** folder will be created. You can display the **<part_name>_Documents/index.html** document in a web browser.
 
 Also, system diagram, esp32 circuit diagram and real life photos are in the **Documents** folder.
 
-NOTE: DoxygenFiles only use for doxygen.
+NOTE: **GUI/DoxygenFiles/** and **SerialPortDriver/DoxygenFiles/** only use for doxygen.
 
 <a id="without-install"></a> 
 # Installation Without Using install.sh
