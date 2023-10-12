@@ -33,6 +33,8 @@ enum QOS
 struct MqttConfig
 {
     std::string serverAdress; ///< This indicates the MQTT Server ip adress.
+    std::string username;     ///< This indicates the MQTT username.
+    std::string password;     ///< This indicates the MQTT password.
     std::string topic1;       ///< This indicates the first MQTT topic.
     std::string topic2;       ///< This indicates the second MQTT topic.
     std::string topic3;       ///< This indicates the third MQTT topic.

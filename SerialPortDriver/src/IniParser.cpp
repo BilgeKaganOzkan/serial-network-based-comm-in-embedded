@@ -47,6 +47,8 @@ void IniParser::startParsing()
 
         mqttClientConfig.serverAdress = pt.get<std::string>("MqttConfig.MQTT_ADDRESS");
         mqttClientConfig.port = pt.get<int>("MqttConfig.MQTT_PORT");
+        mqttClientConfig.username = pt.get<std::string>("MqttConfig.MQTT_USERNAME");
+        mqttClientConfig.password = pt.get<std::string>("MqttConfig.MQTT_PASSWORD");
         mqttClientConfig.topic1 = pt.get<std::string>("MqttConfig.MQTT_TOPIC_1");
         mqttClientConfig.topic2 = pt.get<std::string>("MqttConfig.MQTT_TOPIC_2");
         mqttClientConfig.topic3 = pt.get<std::string>("MqttConfig.MQTT_TOPIC_3");

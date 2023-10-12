@@ -26,6 +26,8 @@ void MqttComm::convertIniParserDataToMqttConfig(IniParserMqttClientConfig& mqttC
     mqttConfig.topic2 = mqttConfigData.topic2;
     mqttConfig.topic3 = mqttConfigData.topic3;
     mqttConfig.topic4 = mqttConfigData.topic4;
+    mqttConfig.username = mqttConfigData.username;
+    mqttConfig.password = mqttConfigData.password;
 
     switch (mqttConfigData.qos)
     {
@@ -82,8 +84,28 @@ void MqttComm::connectServer(IniParserMqttClientConfig& mqttConfigData)
     }
 
     mqttClient = new mqtt::client(mqttConfig.serverAdress, mqttConfigData.id);
+    
+    mqtt::connect_options connectionOptions;
+    connectionOptions.set_clean_session(true);
+    connectionOptions.set_user_name(mqttConfig.username);
+    connectionOptions.set_password(mqttConfig.password);
+    connectionOptions.set_keep_alive_interval(20);
 
-    mqttClient->connect();
+    mqtt::ssl_options sslOptions;
+    sslOptions.set_ssl_version(MQTT_SSL_VERSION_TLS_1_2);
+    sslOptions.set_verify(false);
+    connectionOptions.set_ssl(sslOptions);
+
+    try
+    {
+        mqttClient->connect(connectionOptions);
+    }
+    catch(const std::exception& e)
+    {
+        FAILCODE_SET_AND_EXIT<MqttFailCodeType>(failCode, MQTT_CONNECTION_ERROR);
+    }
+    
+    
 
     if (mqttClient->is_connected() == false)
     {

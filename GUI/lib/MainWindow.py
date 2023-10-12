@@ -199,11 +199,13 @@ class MqttSettingsWindow(QDialog):
         self.mqttSettingsDict = {
             "serverAddress": "",
             "port": 0,
+            "username": "",
+            "password": "",
             "systemStateTopic": "",
             "led1StateTopic": "",
             "led2StateTopic": "",
             "buttonPressCountTopic": ""
-        }
+            }
 
         self.iniFilePath = "config/mqttConfig.ini"
 
@@ -212,7 +214,7 @@ class MqttSettingsWindow(QDialog):
         self.mqttConnected = False
 
         windowWidth = 400
-        windowHeight = 360
+        windowHeight = 420
 
         labelPositionX = 10
         labelPositionY = 30
@@ -245,22 +247,32 @@ class MqttSettingsWindow(QDialog):
         portLabel = QLabel(container)
         portLabel.setText("MQTT Port")
         portLabel.setFont(font)
-        portLabel.setGeometry(labelPositionX,labelPositionY + labelPositionYSlide, labelWidth, labelHeight)
+        portLabel.setGeometry(labelPositionX, labelPositionY + labelPositionYSlide, labelWidth, labelHeight)
+
+        usernameLabel = QLabel(container)
+        usernameLabel.setText("MQTT Username")
+        usernameLabel.setFont(font)
+        usernameLabel.setGeometry(labelPositionX,labelPositionY + labelPositionYSlide * 2, labelWidth, labelHeight)
+
+        passwordLabel = QLabel(container)
+        passwordLabel.setText("MQTT Password")
+        passwordLabel.setFont(font)
+        passwordLabel.setGeometry(labelPositionX,labelPositionY + labelPositionYSlide * 3, labelWidth, labelHeight)
 
         systemStateTopicLabel = QLabel(container)
         systemStateTopicLabel.setText("System State Topic")
         systemStateTopicLabel.setFont(font)
-        systemStateTopicLabel.setGeometry(labelPositionX, labelPositionY + labelPositionYSlide * 2, labelWidth, labelHeight)
+        systemStateTopicLabel.setGeometry(labelPositionX, labelPositionY + labelPositionYSlide * 4, labelWidth, labelHeight)
 
         led1StateTopicLabel = QLabel(container)
         led1StateTopicLabel.setText("Led 1 State Topic")
         led1StateTopicLabel.setFont(font)
-        led1StateTopicLabel.setGeometry(labelPositionX, labelPositionY + labelPositionYSlide * 3, labelWidth, labelHeight)
+        led1StateTopicLabel.setGeometry(labelPositionX, labelPositionY + labelPositionYSlide * 6, labelWidth, labelHeight)
 
         led2StateTopicLabel = QLabel(container)
         led2StateTopicLabel.setText("Led 2 State Topic")
         led2StateTopicLabel.setFont(font)
-        led2StateTopicLabel.setGeometry(labelPositionX, labelPositionY + labelPositionYSlide * 4, labelWidth, labelHeight)
+        led2StateTopicLabel.setGeometry(labelPositionX, labelPositionY + labelPositionYSlide * 7, labelWidth, labelHeight)
 
         buttonPressCountTopicLabel = QLabel(container)
         buttonPressCountTopicLabel.setText("Button Press Count Topic")
@@ -273,20 +285,26 @@ class MqttSettingsWindow(QDialog):
         self.portTextbox = QLineEdit(container)
         self.portTextbox.setGeometry(labelPositionX + labelWidth ,labelPositionY + labelPositionYSlide, labelWidth, labelHeight)
 
+        self.usernameTextbox = QLineEdit(container)
+        self.usernameTextbox.setGeometry(labelPositionX + labelWidth ,labelPositionY + labelPositionYSlide * 2, labelWidth, labelHeight)
+
+        self.passwordTextbox = QLineEdit(container)
+        self.passwordTextbox.setGeometry(labelPositionX + labelWidth ,labelPositionY + labelPositionYSlide * 3, labelWidth, labelHeight)
+
         self.systemStateTextbox = QLineEdit(container)
-        self.systemStateTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 2, labelWidth, labelHeight)
+        self.systemStateTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 4, labelWidth, labelHeight)
 
         self.led1StateTextbox = QLineEdit(container)
-        self.led1StateTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 3, labelWidth, labelHeight)
+        self.led1StateTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 5, labelWidth, labelHeight)
 
         self.led2StateTextbox = QLineEdit(container)
-        self.led2StateTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 4, labelWidth, labelHeight)
+        self.led2StateTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 6, labelWidth, labelHeight)
 
         self.buttonPressCountTextbox = QLineEdit(container)
-        self.buttonPressCountTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 5, labelWidth, labelHeight)
+        self.buttonPressCountTextbox.setGeometry(labelPositionX + labelWidth, labelPositionY + labelPositionYSlide * 7, labelWidth, labelHeight)
 
         self.setSettingsButton = QPushButton(container)
-        self.setSettingsButton.setGeometry(270, 300, 100, 30)
+        self.setSettingsButton.setGeometry(270, 360, 100, 30)
         self.setSettingsButton.setText("Connect")
         self.setSettingsButton.clicked.connect(self.setMqttSettings)
 
@@ -306,6 +324,8 @@ class MqttSettingsWindow(QDialog):
 
             self.mqttSettingsDict["serverAddress"] = self.config.get('MQTT_Settings', 'serverAddress')
             self.mqttSettingsDict["port"] = self.config.getint('MQTT_Settings', 'port')
+            self.mqttSettingsDict["username"] = self.config.get('MQTT_Settings', 'username')
+            self.mqttSettingsDict["password"] = self.config.get('MQTT_Settings', 'password')
             self.mqttSettingsDict["systemStateTopic"] = self.config.get('MQTT_Settings', 'systemStateTopic')
             self.mqttSettingsDict["led1StateTopic"] = self.config.get('MQTT_Settings', 'led1StateTopic')
             self.mqttSettingsDict["led2StateTopic"] = self.config.get('MQTT_Settings', 'led2StateTopic')
@@ -313,15 +333,20 @@ class MqttSettingsWindow(QDialog):
 
             self.serverAddressTextbox.setText(self.mqttSettingsDict["serverAddress"])
             self.portTextbox.setText(str(self.mqttSettingsDict["port"]))
+            self.usernameTextbox.setText(self.mqttSettingsDict["username"])
+            self.passwordTextbox.setText(self.mqttSettingsDict["password"])
             self.systemStateTextbox.setText(self.mqttSettingsDict["systemStateTopic"])
             self.led1StateTextbox.setText(self.mqttSettingsDict["led1StateTopic"])
             self.led2StateTextbox.setText(self.mqttSettingsDict["led2StateTopic"])
             self.buttonPressCountTextbox.setText(self.mqttSettingsDict["buttonPressCountTopic"])
 
-        except:
+        except Exception as e:
+            print(e)
             self.mqttSettingsDict = {
             "serverAddress": "",
             "port": 0,
+            "username": "",
+            "password": "",
             "systemStateTopic": "",
             "led1StateTopic": "",
             "led2StateTopic": "",
@@ -330,6 +355,8 @@ class MqttSettingsWindow(QDialog):
 
             self.serverAddressTextbox.setText("")
             self.portTextbox.setText("")
+            self.usernameTextbox.setText("")
+            self.passwordTextbox.setText("")
             self.systemStateTextbox.setText("")
             self.led1StateTextbox.setText("")
             self.led2StateTextbox.setText("")
@@ -346,6 +373,8 @@ class MqttSettingsWindow(QDialog):
         if (checkedSuccess):       
             self.mqttSettingsDict["serverAddress"] = self.serverAddressTextbox.text()
             self.mqttSettingsDict["port"] = int(self.portTextbox.text())
+            self.mqttSettingsDict["username"] = self.usernameTextbox.text()
+            self.mqttSettingsDict["password"] = self.passwordTextbox.text()
             self.mqttSettingsDict["systemStateTopic"] = self.systemStateTextbox.text()
             self.mqttSettingsDict["led1StateTopic"] = self.led1StateTextbox.text()
             self.mqttSettingsDict["led2StateTopic"] = self.led2StateTextbox.text()
@@ -355,6 +384,8 @@ class MqttSettingsWindow(QDialog):
             self.config.add_section("MQTT_Settings")
             self.config.set("MQTT_Settings", "serverAddress", self.mqttSettingsDict["serverAddress"])
             self.config.set("MQTT_Settings", "port", str(self.mqttSettingsDict["port"]))
+            self.config.set("MQTT_Settings", "username", self.mqttSettingsDict["username"])
+            self.config.set("MQTT_Settings", "password", self.mqttSettingsDict["password"])
             self.config.set("MQTT_Settings", "systemStateTopic", self.mqttSettingsDict["systemStateTopic"])
             self.config.set("MQTT_Settings", "led1StateTopic", self.mqttSettingsDict["led1StateTopic"])
             self.config.set("MQTT_Settings", "led2StateTopic", self.mqttSettingsDict["led2StateTopic"])
@@ -399,6 +430,12 @@ class MqttSettingsWindow(QDialog):
         
         if(self.portTextbox.text() == ""):
             errorMessages += "--Port can not be empty!\n\n"
+        
+        if(self.usernameTextbox.text() == ""):
+            errorMessages += "--Username can not be empty!\n\n"
+
+        if(self.passwordTextbox.text() == ""):
+            errorMessages += "--Pasword can not be empty!\n\n"
         
         if(self.systemStateTextbox.text() == ""):
             errorMessages += "--System State Topic can not be empty!\n\n"

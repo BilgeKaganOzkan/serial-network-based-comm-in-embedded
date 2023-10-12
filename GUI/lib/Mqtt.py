@@ -26,6 +26,8 @@ class Mqtt:
         self.mqttSettingsDict = {
             "serverAddress": "",
             "port": 0,
+            "username": "",
+            "password": "",
             "systemStateTopic": "",
             "led1StateTopic": "",
             "led2StateTopic": "",
@@ -151,6 +153,7 @@ class Mqtt:
         """
         try:
             self.errorMessage = ""
+            self.client.username_pw_set(self.mqttSettingsDict["username"], self.mqttSettingsDict["password"])
             self.client.connect(self.mqttSettingsDict["serverAddress"], self.mqttSettingsDict["port"])
             self.subscribeTopics()
         except Exception as e:

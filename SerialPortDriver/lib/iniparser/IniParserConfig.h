@@ -24,11 +24,11 @@ enum IniParserFailCode
  */
 struct IniParserSerialPortConfig
 {
-	std::string portName;  ///< This indicates serial port name.
-	int baudRate;          ///< This indicates baudrate.
-	int dataBit;           ///< This indicates data bit length.
-	int stopBit;           ///< This indicates stop bit length.
-	std::string parityBit; ///< This indicates parity bit type.
+	std::string portName;  ///< This indicates the serial port name.
+	int baudRate;          ///< This indicates the baudrate.
+	int dataBit;           ///< This indicates the data bit length.
+	int stopBit;           ///< This indicates the stop bit length.
+	std::string parityBit; ///< This indicates the parity bit type.
 };
 
 /** @struct IniParserMqttClientConfig
@@ -36,14 +36,16 @@ struct IniParserSerialPortConfig
  */
 struct IniParserMqttClientConfig
 {
-    std::string serverAdress; ///< This indicates MQTT Server ip adress.
-    int port;                 ///< This indicates MQTT Server port number.
-    std::string topic1;       ///< This indicates first MQTT topic.
-    std::string topic2;       ///< This indicates second MQTT topic.
-    std::string topic3;       ///< This indicates third MQTT topic.
-    std::string topic4;       ///< This indicates fourth MQTT topic.
-    std::string id;           ///< This indicates unique id for connect MQTT server.
-    int qos;                  ///< This indicates QOS number.
+    std::string serverAdress; ///< This indicates the MQTT Server ip adress.
+    int port;                 ///< This indicates the MQTT Server port number.
+    std::string username;     ///< This indicates the MQTT username
+    std::string password;     ///< This indicates the MQTT password
+    std::string topic1;       ///< This indicates the first MQTT topic.
+    std::string topic2;       ///< This indicates the second MQTT topic.
+    std::string topic3;       ///< This indicates the third MQTT topic.
+    std::string topic4;       ///< This indicates the fourth MQTT topic.
+    std::string id;           ///< This indicates the unique id for connect MQTT server.
+    int qos;                  ///< This indicates the QOS number.
 };
 
 /** @struct IniParserMessageConfig
@@ -51,10 +53,10 @@ struct IniParserMqttClientConfig
  */
 struct IniParserMessageConfig
 {
-    std::string startCharacters;     ///< This indicates start characters of the message structure.
-	std::string seperatorCharacters; ///< This indicates seperator characters of the message structure.
-	std::string endCharacters;       ///< This indicates end characters of the message structure.
-    int seperatedDataCount;          ///< This indicates that how much data will be acquired after parsing the received message.
+    std::string startCharacters;     ///< This indicates the start characters of the message structure.
+	std::string seperatorCharacters; ///< This indicates the seperator characters of the message structure.
+	std::string endCharacters;       ///< This indicates the end characters of the message structure.
+    int seperatedDataCount;          ///< This indicates the that how much data will be acquired after parsing the received message.
 };
 
 /**@}*/
