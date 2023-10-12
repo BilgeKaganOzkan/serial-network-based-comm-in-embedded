@@ -27,7 +27,7 @@ sudo apt-get install mosquitto-clients
 sudo systemctl start mosquitto
 sudo systemctl enable mosquitto
 ```
-After this, if you want to only access to the mosquitto with user name and password, please follow the instructions:
+After this, if you want to using to the mosquitto only with user name and password, please follow the instructions:
 
 First, you have to define username and password in passwd file using following command:
 ```
@@ -37,7 +37,7 @@ Second, you have to configure **mosquitto.conf** file using following command:
 ```
 sudo nano /etc/mosquitto/mosquitto.conf
 ```
-Third, you have to paste command below to end of the file. **important NOTE: There have to be new line characters between all words and  must not any space character end of line in mosquitto.conf file** 
+Third, you have to paste command below to end of the file. **IMPORTANT NOTE: There have to be new line characters between all words and  must not any space character end of line in mosquitto.conf file** 
 ```
 allow_anonymous false
 
@@ -158,9 +158,11 @@ You can use **doxygen** to learn more code details and code connections about Se
 ```
 doxygen Doxyfile
 ```
-After this, **doxygen/** folder will be created. You can display the **doxygen/index.html** document in a web browser.
+After this, **<part_name>_Doxygen/** folder will be created. You can display the **<part_name>_Doxygen/index.html** document in a web browser.
 
 Also, system diagram, esp32 circuit diagram and real life photos are in the **Documents** folder.
+
+NOTE: DoxygenFiles only use for doxygen.
 
 <a id="without-install"></a> 
 # Installation Without Using install.sh
@@ -260,8 +262,10 @@ sudo apt install -y python3-pip
 ```
 And then, you have to install all libraries for GUI part using following command:
 ```
-pip3 install PyQt5
-pip3 install install pyserial
+sudo apt install -y python3-pip
+sudo apt install -y pyqt5-dev-tools pyqt5-dev
+pip3 install paho-mqtt
+pip3 install pyserial
 pip3 install get-mac
 ```
 
