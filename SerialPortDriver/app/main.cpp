@@ -72,7 +72,7 @@ void printMqttFailCode(MqttFailCodeType& failCode)
     {
     case MQTT_CONNECTION_ERROR:
         std::cout << "ERROR: An connection error occured.!!!" << std::endl;
-        std::cout << "Please check server ip, port in the config.ini file and your internet connection";
+        std::cout << "Please check server ip, port, username and password in the config.ini file and your internet connection";
         break;
     case MQTT_QOS_IS_INVALID:
         std::cout << "ERROR: QOS is invalid!!!" << std::endl;
