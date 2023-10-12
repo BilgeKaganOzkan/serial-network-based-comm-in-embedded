@@ -24,8 +24,8 @@ NOTE: If **installations/** folder was not removed automatically, you can delete
 To test the project you have to have [Mosquitto](https://mosquitto.org/). If you don't have, you can instal using following commands:
 ```
 sudo apt-get update
-sudo apt-get install mosquitto
-sudo apt-get install mosquitto-clients
+sudo apt-get install -y mosquitto
+sudo apt-get install -y mosquitto-clients
 sudo systemctl start mosquitto
 sudo systemctl enable mosquitto
 ```
