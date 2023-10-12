@@ -1,0 +1,5 @@
+<map id="Message::getParsedMessage" name="Message::getParsedMessage">
+<area shape="rect" id="node1" title="This function returns the prepared message which will be send to the MQTT server." alt="" coords="364,5,575,32"/>
+<area shape="rect" id="node2" href="$dd/d0f/classMqttComm.html#ae60f832f58e2f07267fda4a08db294a8" title="This function publishes prepared message to topics as MQTT messages." alt="" coords="108,5,316,32"/>
+<area shape="rect" id="node3" href="$d7/dbd/group__Main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="This function is main function of programme." alt="" coords="5,5,60,32"/>
+</map>

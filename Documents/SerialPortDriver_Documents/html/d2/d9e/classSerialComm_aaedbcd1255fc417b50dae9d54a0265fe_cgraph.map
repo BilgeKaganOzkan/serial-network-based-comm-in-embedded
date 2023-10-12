@@ -1,0 +1,6 @@
+<map id="SerialComm::readDataFromSerial" name="SerialComm::readDataFromSerial">
+<area shape="rect" id="node1" title="This function reads data from serial port." alt="" coords="5,23,208,65"/>
+<area shape="rect" id="node2" href="$d6/d28/classMessage.html#aa514516ee5487126b908e2a3428221ce" title="This function collects the data and check it." alt="" coords="256,31,423,57"/>
+<area shape="rect" id="node3" href="$d6/d28/classMessage.html#aaf1316a4bbe4be5e0d4c98e22b85cb2e" title="This function prepares the message which will be send to the MQTT server." alt="" coords="471,5,667,32"/>
+<area shape="rect" id="node4" href="$d6/d28/classMessage.html#a55d070b5477a7cdbbf562aada763a92d" title="This function resets counter variables and message variable." alt="" coords="508,56,629,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="MqttComm::publishMessage" name="MqttComm::publishMessage">
+<area shape="rect" id="node1" title="This function publishes prepared message to topics as MQTT messages." alt="" coords="5,5,213,32"/>
+<area shape="rect" id="node2" href="$d6/d28/classMessage.html#a5bee00a95850a0c16ea0ee12c52e64dc" title="This function returns the prepared message which will be send to the MQTT server." alt="" coords="261,5,472,32"/>
+</map>

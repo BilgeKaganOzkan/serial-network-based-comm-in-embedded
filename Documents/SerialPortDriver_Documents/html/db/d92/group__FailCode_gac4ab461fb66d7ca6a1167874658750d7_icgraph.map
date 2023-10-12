@@ -1,0 +1,7 @@
+<map id="FAILCODE_SET_AND_EXIT" name="FAILCODE_SET_AND_EXIT">
+<area shape="rect" id="node1" title="This function assigns the appointedFailCode variable which is T type to the FailCode object and throw..." alt="" coords="661,42,849,69"/>
+<area shape="rect" id="node2" href="$d2/d9e/classSerialComm.html#aaf85d765a9927ec451f6da2a02243cea" title="This function converts IniParserMqttClientConfig Structure type to SerialPortConfig Structure type." alt="" coords="399,5,613,47"/>
+<area shape="rect" id="node5" href="$df/dc1/classIniParser.html#a44fa7fd3358ba86056de81e06113a34a" title="This function starts the reading and parsing processes." alt="" coords="148,67,311,94"/>
+<area shape="rect" id="node3" href="$d2/d9e/classSerialComm.html#ad126a6a8c4c88649ba52d1c97807a240" title="This function starts the serial communication." alt="" coords="108,15,351,42"/>
+<area shape="rect" id="node4" href="$d7/dbd/group__Main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="This function is main function of programme." alt="" coords="5,42,60,69"/>
+</map>

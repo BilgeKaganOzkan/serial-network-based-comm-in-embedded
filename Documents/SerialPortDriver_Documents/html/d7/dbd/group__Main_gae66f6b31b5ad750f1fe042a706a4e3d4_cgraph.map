@@ -1,0 +1,24 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="This function is main function of programme." alt="" coords="5,347,60,374"/>
+<area shape="rect" id="node2" href="$dd/d0f/classMqttComm.html#a3b2096bdaafea3372dc08d9784f6f244" title="This function connects to the MQTT server." alt="" coords="131,13,327,39"/>
+<area shape="rect" id="node4" href="$d6/d28/classMessage.html#a642489059350cefb582ca1a08eacbd00" title="This function creates message format according to iniParserMessageConfig enum to check data will be c..." alt="" coords="113,63,346,90"/>
+<area shape="rect" id="node5" href="$df/dc1/classIniParser.html#af074c135b071812bf2c2e2c28007a566" title="This function returns the Message Config Data." alt="" coords="111,114,348,141"/>
+<area shape="rect" id="node6" href="$df/dc1/classIniParser.html#a193f387a08d6f9df30045d377421df5d" title="This function returns the MQTT Client Config Data." alt="" coords="142,165,317,207"/>
+<area shape="rect" id="node7" href="$df/dc1/classIniParser.html#a9df6138ee2530ba8879930c1df7f3da6" title="This function returns the Serial Port Config Data." alt="" coords="144,231,315,272"/>
+<area shape="rect" id="node8" href="$dc/dde/classFailCode.html#ae1e4928746c38acf696a10ef5c8dee95" title="This function returns the failCode, which is in the FailCode object, variable that is T type." alt="" coords="158,297,301,323"/>
+<area shape="rect" id="node9" href="$d7/dbd/group__Main.html#ga2ec0b44eaffbb15c7466936ea5211385" title="This function prints the IniParser class fail code." alt="" coords="148,347,311,374"/>
+<area shape="rect" id="node10" href="$d7/dbd/group__Main.html#gaff12ab5ecd38cd7bcf1377b8a0f7771e" title="This function prints the MqttComm class fail code." alt="" coords="161,398,298,425"/>
+<area shape="rect" id="node11" href="$d7/dbd/group__Main.html#ga3614cec6406ed5fe166ce6b80c89bdff" title="This function prints the SerialComm class fail code." alt="" coords="157,449,301,475"/>
+<area shape="rect" id="node12" href="$dd/d0f/classMqttComm.html#ae60f832f58e2f07267fda4a08db294a8" title="This function publishes prepared message to topics as MQTT messages." alt="" coords="125,499,333,526"/>
+<area shape="rect" id="node14" href="$d2/d9e/classSerialComm.html#aaedbcd1255fc417b50dae9d54a0265fe" title="This function reads data from serial port." alt="" coords="128,551,331,592"/>
+<area shape="rect" id="node18" href="$d2/d9e/classSerialComm.html#ad126a6a8c4c88649ba52d1c97807a240" title="This function starts the serial communication." alt="" coords="108,617,351,643"/>
+<area shape="rect" id="node22" href="$df/dc1/classIniParser.html#a44fa7fd3358ba86056de81e06113a34a" title="This function starts the reading and parsing processes." alt="" coords="425,737,587,763"/>
+<area shape="rect" id="node3" href="$dd/d0f/classMqttComm.html#a1961748cd4cae85cd17a5fdba2558641" title="This function converts IniParserMqttClientConfig Structure type to MqttConfig Structure type." alt="" coords="402,5,610,47"/>
+<area shape="rect" id="node13" href="$d6/d28/classMessage.html#a5bee00a95850a0c16ea0ee12c52e64dc" title="This function returns the prepared message which will be send to the MQTT server." alt="" coords="401,499,611,526"/>
+<area shape="rect" id="node15" href="$d6/d28/classMessage.html#aa514516ee5487126b908e2a3428221ce" title="This function collects the data and check it." alt="" coords="423,554,589,581"/>
+<area shape="rect" id="node16" href="$d6/d28/classMessage.html#aaf1316a4bbe4be5e0d4c98e22b85cb2e" title="This function prepares the message which will be send to the MQTT server." alt="" coords="661,529,857,555"/>
+<area shape="rect" id="node17" href="$d6/d28/classMessage.html#a55d070b5477a7cdbbf562aada763a92d" title="This function resets counter variables and message variable." alt="" coords="699,579,820,606"/>
+<area shape="rect" id="node19" href="$d2/d9e/classSerialComm.html#a30a9bfcb248f2ef68fdc8a0af7b5046a" title="This function configures the serial port." alt="" coords="411,605,601,647"/>
+<area shape="rect" id="node20" href="$d2/d9e/classSerialComm.html#aaf85d765a9927ec451f6da2a02243cea" title="This function converts IniParserMqttClientConfig Structure type to SerialPortConfig Structure type." alt="" coords="399,671,613,712"/>
+<area shape="rect" id="node21" href="$db/d92/group__FailCode.html#gac4ab461fb66d7ca6a1167874658750d7" title="This function assigns the appointedFailCode variable which is T type to the FailCode object and throw..." alt="" coords="665,707,853,734"/>
+</map>

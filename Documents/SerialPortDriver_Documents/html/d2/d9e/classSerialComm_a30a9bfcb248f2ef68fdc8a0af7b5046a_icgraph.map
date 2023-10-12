@@ -1,0 +1,5 @@
+<map id="SerialComm::assignSerialParams" name="SerialComm::assignSerialParams">
+<area shape="rect" id="node1" title="This function configures the serial port." alt="" coords="399,5,588,47"/>
+<area shape="rect" id="node2" href="$d2/d9e/classSerialComm.html#ad126a6a8c4c88649ba52d1c97807a240" title="This function starts the serial communication." alt="" coords="108,13,351,39"/>
+<area shape="rect" id="node3" href="$d7/dbd/group__Main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="This function is main function of programme." alt="" coords="5,13,60,39"/>
+</map>

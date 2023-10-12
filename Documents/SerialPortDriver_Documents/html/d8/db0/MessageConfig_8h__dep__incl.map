@@ -1,0 +1,10 @@
+<map id="lib/message/MessageConfig.h" name="lib/message/MessageConfig.h">
+<area shape="rect" id="node1" title="This file includes MessageConfig Structure for the Message class." alt="" coords="342,5,558,32"/>
+<area shape="rect" id="node2" href="$d5/dca/Message_8h.html" title=" " alt="" coords="363,80,537,107"/>
+<area shape="rect" id="node3" href="$df/d0a/main_8cpp.html" title="This file is main file." alt="" coords="5,304,116,331"/>
+<area shape="rect" id="node4" href="$d5/d4a/MqttComm_8h.html" title=" " alt="" coords="250,155,413,181"/>
+<area shape="rect" id="node6" href="$d8/d6e/SerialComm_8cpp.html" title=" " alt="" coords="259,304,411,331"/>
+<area shape="rect" id="node7" href="$dd/d52/MqttComm_8cpp.html" title=" " alt="" coords="373,229,519,256"/>
+<area shape="rect" id="node8" href="$d2/d31/Message_8cpp.html" title=" " alt="" coords="594,155,725,181"/>
+<area shape="rect" id="node5" href="$d7/d3a/SerialComm_8h.html" title=" " alt="" coords="99,229,273,256"/>
+</map>

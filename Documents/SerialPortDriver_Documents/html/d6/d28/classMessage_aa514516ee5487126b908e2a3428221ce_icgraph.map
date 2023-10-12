@@ -1,0 +1,5 @@
+<map id="Message::acquireData" name="Message::acquireData">
+<area shape="rect" id="node1" title="This function collects the data and check it." alt="" coords="359,13,525,39"/>
+<area shape="rect" id="node2" href="$d2/d9e/classSerialComm.html#aaedbcd1255fc417b50dae9d54a0265fe" title="This function reads data from serial port." alt="" coords="108,5,311,47"/>
+<area shape="rect" id="node3" href="$d7/dbd/group__Main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="This function is main function of programme." alt="" coords="5,13,60,39"/>
+</map>

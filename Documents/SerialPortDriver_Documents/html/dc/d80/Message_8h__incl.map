@@ -1,0 +1,8 @@
+<map id="lib/message/Message.h" name="lib/message/Message.h">
+<area shape="rect" id="node1" title=" " alt="" coords="139,5,314,32"/>
+<area shape="rect" id="node2" href="$df/d84/MessageConfig_8h.html" title="This file includes MessageConfig Structure for the Message class." alt="" coords="5,155,139,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="161,229,241,256"/>
+<area shape="rect" id="node4" href="$d5/d82/IniParserConfig_8h.html" title="This file includes the ini parser &#39;failCode&#39; types and configuration structures for IniParser class." alt="" coords="213,80,344,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="369,80,431,107"/>
+<area shape="rect" id="node5" href="$d1/d64/SerialConfig_8h.html" title="This file includes BaudRate, DataBit, StopBit, ParityBit, SerialFailCodeType types and SerialPortConf..." alt="" coords="264,155,376,181"/>
+</map>

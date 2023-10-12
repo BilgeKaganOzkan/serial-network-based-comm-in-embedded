@@ -1,0 +1,6 @@
+<map id="SerialComm" name="SerialComm">
+<area shape="rect" id="node1" title="SerialComm class connects to the serial port, starts the communication and reads the data from serial..." alt="" coords="87,199,189,225"/>
+<area shape="rect" id="node2" href="$da/de1/structSerialPortConfig.html" title="Serial Port Configuration Structure." alt="" coords="5,102,132,129"/>
+<area shape="rect" id="node3" href="$dc/dde/classFailCode.html" title=" " alt="" coords="157,95,341,136"/>
+<area shape="rect" id="node4" href="$dc/dde/classFailCode.html" title="FailCode class provides template structure to all the other classes to keep their own failcodes...." alt="" coords="191,5,306,32"/>
+</map>

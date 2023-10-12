@@ -1,0 +1,5 @@
+<map id="Message::acquireData" name="Message::acquireData">
+<area shape="rect" id="node1" title="This function collects the data and check it." alt="" coords="5,31,172,57"/>
+<area shape="rect" id="node2" href="$d6/d28/classMessage.html#aaf1316a4bbe4be5e0d4c98e22b85cb2e" title="This function prepares the message which will be send to the MQTT server." alt="" coords="220,5,416,32"/>
+<area shape="rect" id="node3" href="$d6/d28/classMessage.html#a55d070b5477a7cdbbf562aada763a92d" title="This function resets counter variables and message variable." alt="" coords="257,56,379,83"/>
+</map>

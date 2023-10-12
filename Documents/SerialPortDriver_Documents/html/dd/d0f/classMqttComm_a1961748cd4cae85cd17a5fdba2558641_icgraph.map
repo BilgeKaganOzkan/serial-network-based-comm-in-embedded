@@ -1,0 +1,5 @@
+<map id="MqttComm::convertIniParserDataToMqttConfig" name="MqttComm::convertIniParserDataToMqttConfig">
+<area shape="rect" id="node1" title="This function converts IniParserMqttClientConfig Structure type to MqttConfig Structure type." alt="" coords="352,5,560,47"/>
+<area shape="rect" id="node2" href="$dd/d0f/classMqttComm.html#a3b2096bdaafea3372dc08d9784f6f244" title="This function connects to the MQTT server." alt="" coords="108,13,304,39"/>
+<area shape="rect" id="node3" href="$d7/dbd/group__Main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="This function is main function of programme." alt="" coords="5,13,60,39"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="SerialComm::convertIniParserDataToSerialConfig" name="SerialComm::convertIniParserDataToSerialConfig">
+<area shape="rect" id="node1" title="This function converts IniParserMqttClientConfig Structure type to SerialPortConfig Structure type." alt="" coords="5,5,220,47"/>
+<area shape="rect" id="node2" href="$db/d92/group__FailCode.html#gac4ab461fb66d7ca6a1167874658750d7" title="This function assigns the appointedFailCode variable which is T type to the FailCode object and throw..." alt="" coords="268,13,456,39"/>
+</map>

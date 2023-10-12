@@ -1,0 +1,6 @@
+<map id="MqttComm" name="MqttComm">
+<area shape="rect" id="node1" title="MqttComm class connects to the MQTT Server and publishes prepared message to topics as MQTT messages." alt="" coords="160,184,255,211"/>
+<area shape="rect" id="node2" href="$dc/dde/classFailCode.html" title=" " alt="" coords="5,95,228,121"/>
+<area shape="rect" id="node3" href="$dc/dde/classFailCode.html" title="FailCode class provides template structure to all the other classes to keep their own failcodes...." alt="" coords="59,5,174,32"/>
+<area shape="rect" id="node4" href="$df/d61/structMqttConfig.html" title="MQTT Client Configuration Structure." alt="" coords="253,95,346,121"/>
+</map>

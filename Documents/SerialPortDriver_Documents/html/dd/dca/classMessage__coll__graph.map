@@ -1,0 +1,4 @@
+<map id="Message" name="Message">
+<area shape="rect" id="node1" title="Message class collects the data which given to it, checks the collected data format and prepares the ..." alt="" coords="26,95,106,121"/>
+<area shape="rect" id="node2" href="$dc/da3/structMessageConfig.html" title="Message Structure To Be Send To The MQTT Server." alt="" coords="5,5,127,32"/>
+</map>

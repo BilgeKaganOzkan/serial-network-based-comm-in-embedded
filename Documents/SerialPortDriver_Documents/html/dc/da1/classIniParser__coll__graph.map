@@ -1,0 +1,8 @@
+<map id="IniParser" name="IniParser">
+<area shape="rect" id="node1" title="IniParser class reads the &quot;config.ini&quot; file and parses to create Serial Port Config Data,..." alt="" coords="695,81,773,108"/>
+<area shape="rect" id="node2" href="$d9/d7f/structIniParserSerialPortConfig.html" title="Serial Port Configuration Structure." alt="" coords="331,5,514,32"/>
+<area shape="rect" id="node3" href="$dc/dde/classFailCode.html" title=" " alt="" coords="313,56,532,83"/>
+<area shape="rect" id="node4" href="$dc/dde/classFailCode.html" title="FailCode class provides template structure to all the other classes to keep their own failcodes...." alt="" coords="5,56,120,83"/>
+<area shape="rect" id="node5" href="$d6/d2a/structIniParserMessageConfig.html" title="Message Structure To Be Send To The MQTT Server." alt="" coords="334,107,511,133"/>
+<area shape="rect" id="node6" href="$d9/d11/structIniParserMqttClientConfig.html" title="MQTT Client Configuration Structure." alt="" coords="329,157,516,184"/>
+</map>

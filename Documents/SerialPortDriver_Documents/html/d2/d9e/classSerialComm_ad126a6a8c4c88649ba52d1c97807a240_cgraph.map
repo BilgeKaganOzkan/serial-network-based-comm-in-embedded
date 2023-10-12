@@ -1,0 +1,6 @@
+<map id="SerialComm::startCommunication" name="SerialComm::startCommunication">
+<area shape="rect" id="node1" title="This function starts the serial communication." alt="" coords="5,46,248,73"/>
+<area shape="rect" id="node2" href="$d2/d9e/classSerialComm.html#a30a9bfcb248f2ef68fdc8a0af7b5046a" title="This function configures the serial port." alt="" coords="309,5,498,47"/>
+<area shape="rect" id="node3" href="$d2/d9e/classSerialComm.html#aaf85d765a9927ec451f6da2a02243cea" title="This function converts IniParserMqttClientConfig Structure type to SerialPortConfig Structure type." alt="" coords="296,71,511,112"/>
+<area shape="rect" id="node4" href="$db/d92/group__FailCode.html#gac4ab461fb66d7ca6a1167874658750d7" title="This function assigns the appointedFailCode variable which is T type to the FailCode object and throw..." alt="" coords="559,78,747,105"/>
+</map>

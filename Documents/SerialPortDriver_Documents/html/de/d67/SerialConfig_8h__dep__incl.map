@@ -1,0 +1,13 @@
+<map id="lib/serial/SerialConfig.h" name="lib/serial/SerialConfig.h">
+<area shape="rect" id="node1" title="This file includes BaudRate, DataBit, StopBit, ParityBit, SerialFailCodeType types and SerialPortConf..." alt="" coords="74,5,246,32"/>
+<area shape="rect" id="node2" href="$d5/d82/IniParserConfig_8h.html" title="This file includes the ini parser &#39;failCode&#39; types and configuration structures for IniParser class." alt="" coords="286,80,498,107"/>
+<area shape="rect" id="node8" href="$d7/d3a/SerialComm_8h.html" title=" " alt="" coords="179,304,354,331"/>
+<area shape="rect" id="node3" href="$df/d0a/main_8cpp.html" title="This file is main file." alt="" coords="211,379,322,405"/>
+<area shape="rect" id="node4" href="$d5/df9/IniParser_8h.html" title=" " alt="" coords="24,155,194,181"/>
+<area shape="rect" id="node5" href="$da/d0d/IniParser_8cpp.html" title=" " alt="" coords="118,229,244,256"/>
+<area shape="rect" id="node6" href="$d5/dca/Message_8h.html" title=" " alt="" coords="608,155,783,181"/>
+<area shape="rect" id="node7" href="$d5/d4a/MqttComm_8h.html" title=" " alt="" coords="370,229,533,256"/>
+<area shape="rect" id="node9" href="$d8/d6e/SerialComm_8cpp.html" title=" " alt="" coords="526,379,678,405"/>
+<area shape="rect" id="node10" href="$dd/d52/MqttComm_8cpp.html" title=" " alt="" coords="504,304,650,331"/>
+<area shape="rect" id="node11" href="$d2/d31/Message_8cpp.html" title=" " alt="" coords="776,229,906,256"/>
+</map>
