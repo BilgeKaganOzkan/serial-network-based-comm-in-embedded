@@ -53,8 +53,10 @@ void IniParser::startParsing()
         mqttClientConfig.topic2 = pt.get<std::string>("MqttConfig.MQTT_TOPIC_2");
         mqttClientConfig.topic3 = pt.get<std::string>("MqttConfig.MQTT_TOPIC_3");
         mqttClientConfig.topic4 = pt.get<std::string>("MqttConfig.MQTT_TOPIC_4");
-        mqttClientConfig.id = pt.get<std::string>("MqttConfig.MQTT_ID");
         mqttClientConfig.qos = pt.get<int>("MqttConfig.MQTT_QOS");
+
+        int randomValue = std::rand();
+        mqttClientConfig.id = "mqtt_publisher_" + std::to_string(randomValue);
 
         messageConfig.startCharacters = pt.get<std::string>("MessageFormat.MF_START_CHARACTERS");
         messageConfig.seperatorCharacters = pt.get<std::string>("MessageFormat.MF_SEPERATOR_CHARACTERS");
