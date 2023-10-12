@@ -99,16 +99,16 @@ class Mqtt:
         """
         receivedMessage = msg.payload.decode()
 
-        if (msg.topic == "deneme1"):
+        if (msg.topic == self.mqttSettingsDict["systemStateTopic"]):
             self.receivedMessageDict["systemState"] = receivedMessage
             self.systemStateReceived = True
-        elif (msg.topic == "deneme2"):
+        elif (msg.topic == self.mqttSettingsDict["led1StateTopic"]):
             self.receivedMessageDict["led1Status"] = receivedMessage
             self.led1StatusReceived = True
-        elif (msg.topic == "deneme3"):
+        elif (msg.topic == self.mqttSettingsDict["led2StateTopic"]):
             self.receivedMessageDict["led2Status"] = receivedMessage
             self.led2StatusReceived = True
-        elif (msg.topic == "deneme4"):
+        elif (msg.topic == self.mqttSettingsDict["buttonPressCountTopic"]):
             self.receivedMessageDict["buttonPressCount"] = receivedMessage
             self.buttonPressCountReceived = True
         else:
