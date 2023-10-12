@@ -43,4 +43,6 @@ sudo rm -rf installation/
 # Installation python GUI app dependecies
 cd GUI/
 sudo apt install -y python3-pip
-pip3 install -r requirements.txt
+pip3 install PyQt5
+pip3 install install pyserial
+pip3 install get-mac
